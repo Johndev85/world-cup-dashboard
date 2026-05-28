@@ -342,194 +342,194 @@ export const groupStandings: GroupStanding[] = [
 // ───────────────────────────────────────────
 export const participants: Participant[] = [
   {
-    id: 1, name: "Angela", initials: "AN", avatar: "AN",
+    id: 1, name: "Adela", initials: "AD", avatar: "AD",
     teams: [
-      { name: "México",        flag: "🇲🇽", group: "A" },
-      { name: "Italia/Irlanda",flag: "🇮🇹", group: "B" },
+      { name: "Suiza",    flag: "🇨🇭", group: "B" },
+      { name: "Jordania", flag: "🇯🇴", group: "J" },
     ],
     points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 1, trend: "same",
   },
   {
-    id: 2, name: "Lina", initials: "LI", avatar: "LI",
+    id: 2, name: "Alejo Arias", initials: "AA", avatar: "AA",
     teams: [
-      { name: "Korea Sur",  flag: "🇰🇷", group: "A" },
-      { name: "Cabo Verde", flag: "🇨🇻", group: "H" },
+      { name: "Qatar",  flag: "🇶🇦", group: "B" },
+      { name: "España", flag: "🇪🇸", group: "H" },
     ],
     points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 2, trend: "same",
   },
   {
-    id: 3, name: "Magnolia", initials: "MA", avatar: "MA",
+    id: 3, name: "Alejo Peña", initials: "AP", avatar: "AP",
     teams: [
-      { name: "Sur Africa", flag: "🇿🇦", group: "A" },
-      { name: "Irán",       flag: "🇮🇷", group: "G" },
+      { name: "Bélgica", flag: "🇧🇪", group: "G" },
+      { name: "Ghana",   flag: "🇬🇭", group: "L" },
     ],
     points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 3, trend: "same",
   },
   {
     id: 4, name: "Alexis", initials: "AL", avatar: "AL",
     teams: [
-      { name: "Dinamarca", flag: "🇩🇰", group: "A" },
-      { name: "Japón",     flag: "🇯🇵", group: "F" },
+      { name: "República Checa", flag: "🇨🇿", group: "A" },
+      { name: "Japón",           flag: "🇯🇵", group: "F" },
     ],
     points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 4, trend: "same",
   },
   {
-    id: 5, name: "Juan Carlos", initials: "JC", avatar: "JC",
+    id: 5, name: "Angela", initials: "AN", avatar: "AN",
     teams: [
-      { name: "Canadá",          flag: "🇨🇦", group: "B" },
-      { name: "Costa de Marfil", flag: "🇨🇮", group: "E" },
+      { name: "México",               flag: "🇲🇽", group: "A" },
+      { name: "Bosnia y Herzegovina", flag: "🇧🇦", group: "B" },
     ],
     points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 5, trend: "same",
   },
   {
-    id: 6, name: "Adela", initials: "AD", avatar: "AD",
-    teams: [
-      { name: "Suiza",    flag: "🇨🇭", group: "B" },
-      { name: "Jordania", flag: "🇯🇴", group: "J" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 6, trend: "same",
-  },
-  {
-    id: 7, name: "Alejo Arias", initials: "AA", avatar: "AA",
-    teams: [
-      { name: "Qatar",  flag: "🇶🇦", group: "B" },
-      { name: "España", flag: "🇪🇸", group: "H" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 7, trend: "same",
-  },
-  {
-    id: 8, name: "Laura", initials: "LA", avatar: "LA",
-    teams: [
-      { name: "Brasil",  flag: "🇧🇷", group: "C" },
-      { name: "Algeria", flag: "🇩🇿", group: "J" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 8, trend: "same",
-  },
-  {
-    id: 9, name: "Hernan", initials: "HE", avatar: "HE",
-    teams: [
-      { name: "Marruecos", flag: "🇲🇦", group: "C" },
-      { name: "Egipto",    flag: "🇪🇬", group: "G" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 9, trend: "same",
-  },
-  {
-    id: 10, name: "Beatriz", initials: "BE", avatar: "BE",
-    teams: [
-      { name: "Escocia",  flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", group: "C" },
-      { name: "Alemania", flag: "🇩🇪", group: "E" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 10, trend: "same",
-  },
-  {
-    id: 11, name: "Dignora", initials: "DI", avatar: "DI",
-    teams: [
-      { name: "Haití",      flag: "🇭🇹", group: "C" },
-      { name: "Inglaterra", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", group: "L" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 11, trend: "same",
-  },
-  {
-    id: 12, name: "Alejo Peña", initials: "AP", avatar: "AP",
-    teams: [
-      { name: "Bélgica", flag: "🇧🇪", group: "G" },
-      { name: "Ghana",   flag: "🇬🇭", group: "L" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 12, trend: "same",
-  },
-  {
-    id: 13, name: "Elier", initials: "EL", avatar: "EL",
-    teams: [
-      { name: "Nueva Zelanda", flag: "🇳🇿", group: "G" },
-      { name: "Portugal",      flag: "🇵🇹", group: "K" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 13, trend: "same",
-  },
-  {
-    id: 14, name: "Juan Vega", initials: "JV", avatar: "JV",
-    teams: [
-      { name: "Uruguay", flag: "🇺🇾", group: "H" },
-      { name: "Curazao", flag: "🇨🇼", group: "E" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 14, trend: "same",
-  },
-  {
-    id: 15, name: "Edwin", initials: "ED", avatar: "ED",
-    teams: [
-      { name: "Francia",  flag: "🇫🇷", group: "I" },
-      { name: "Paraguay", flag: "🇵🇾", group: "D" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 15, trend: "same",
-  },
-  {
-    id: 16, name: "Ivan", initials: "IV", avatar: "IV",
-    teams: [
-      { name: "Senegal",  flag: "🇸🇳", group: "I" },
-      { name: "Ucrania",  flag: "🇺🇦", group: "F" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 16, trend: "same",
-  },
-  {
-    id: 17, name: "Jonh", initials: "JO", avatar: "JO",
-    teams: [
-      { name: "Noruega", flag: "🇳🇴", group: "I" },
-      { name: "Croacia", flag: "🇭🇷", group: "L" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 17, trend: "same",
-  },
-  {
-    id: 18, name: "Nata", initials: "NA", avatar: "NA",
-    teams: [
-      { name: "Iraq/Bolivia", flag: "🇮🇶", group: "I" },
-      { name: "Argentina",    flag: "🇦🇷", group: "J" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 18, trend: "same",
-  },
-  {
-    id: 19, name: "Jorge Hernan", initials: "JH", avatar: "JH",
-    teams: [
-      { name: "USA",    flag: "🇺🇸", group: "D" },
-      { name: "Panamá", flag: "🇵🇦", group: "L" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 19, trend: "same",
-  },
-  {
-    id: 20, name: "Diana Carolina", initials: "DC", avatar: "DC",
-    teams: [
-      { name: "Australia", flag: "🇦🇺", group: "D" },
-      { name: "Congo",     flag: "🇨🇩", group: "K" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 20, trend: "same",
-  },
-  {
-    id: 21, name: "Sandra", initials: "SA", avatar: "SA",
-    teams: [
-      { name: "Turquía",       flag: "🇹🇷", group: "D" },
-      { name: "Países Bajos",  flag: "🇳🇱", group: "F" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 21, trend: "same",
-  },
-  {
-    id: 22, name: "Tiko", initials: "TI", avatar: "TI",
-    teams: [
-      { name: "Arabia Saudita", flag: "🇸🇦", group: "H" },
-      { name: "Colombia",       flag: "🇨🇴", group: "K" },
-    ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 22, trend: "same",
-  },
-  {
-    id: 23, name: "Angie Escobar", initials: "AE", avatar: "AE",
+    id: 6, name: "Angie Escobar", initials: "AE", avatar: "AE",
     teams: [
       { name: "Ecuador",    flag: "🇪🇨", group: "E" },
       { name: "Uzbekistán", flag: "🇺🇿", group: "K" },
     ],
-    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 23, trend: "same",
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 6, trend: "same",
   },
   {
-    id: 24, name: "Juan Guarin", initials: "JG", avatar: "JG",
+    id: 7, name: "Beatriz", initials: "BE", avatar: "BE",
+    teams: [
+      { name: "Escocia",  flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", group: "C" },
+      { name: "Alemania", flag: "🇩🇪", group: "E" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 7, trend: "same",
+  },
+  {
+    id: 8, name: "Diana Carolina", initials: "DC", avatar: "DC",
+    teams: [
+      { name: "Australia", flag: "🇦🇺", group: "D" },
+      { name: "Congo",     flag: "🇨🇩", group: "K" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 8, trend: "same",
+  },
+  {
+    id: 9, name: "Dignora", initials: "DI", avatar: "DI",
+    teams: [
+      { name: "Haití",      flag: "🇭🇹", group: "C" },
+      { name: "Inglaterra", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", group: "L" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 9, trend: "same",
+  },
+  {
+    id: 10, name: "Edwin", initials: "ED", avatar: "ED",
+    teams: [
+      { name: "Francia",  flag: "🇫🇷", group: "I" },
+      { name: "Paraguay", flag: "🇵🇾", group: "D" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 10, trend: "same",
+  },
+  {
+    id: 11, name: "Elier", initials: "EL", avatar: "EL",
+    teams: [
+      { name: "Nueva Zelanda", flag: "🇳🇿", group: "G" },
+      { name: "Portugal",      flag: "🇵🇹", group: "K" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 11, trend: "same",
+  },
+  {
+    id: 12, name: "Hernan", initials: "HE", avatar: "HE",
+    teams: [
+      { name: "Marruecos", flag: "🇲🇦", group: "C" },
+      { name: "Egipto",    flag: "🇪🇬", group: "G" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 12, trend: "same",
+  },
+  {
+    id: 13, name: "Ivan", initials: "IV", avatar: "IV",
+    teams: [
+      { name: "Senegal", flag: "🇸🇳", group: "I" },
+      { name: "Suecia",  flag: "🇸🇪", group: "F" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 13, trend: "same",
+  },
+  {
+    id: 14, name: "John", initials: "JO", avatar: "JO",
+    teams: [
+      { name: "Noruega", flag: "🇳🇴", group: "I" },
+      { name: "Croacia", flag: "🇭🇷", group: "L" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 14, trend: "same",
+  },
+  {
+    id: 15, name: "Jorge Hernan", initials: "JH", avatar: "JH",
+    teams: [
+      { name: "USA",    flag: "🇺🇸", group: "D" },
+      { name: "Panamá", flag: "🇵🇦", group: "L" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 15, trend: "same",
+  },
+  {
+    id: 16, name: "Juan Carlos", initials: "JC", avatar: "JC",
+    teams: [
+      { name: "Canadá",          flag: "🇨🇦", group: "B" },
+      { name: "Costa de Marfil", flag: "🇨🇮", group: "E" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 16, trend: "same",
+  },
+  {
+    id: 17, name: "Juan Guarin", initials: "JG", avatar: "JG",
     teams: [
       { name: "Túnez",   flag: "🇹🇳", group: "F" },
       { name: "Austria", flag: "🇦🇹", group: "J" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 17, trend: "same",
+  },
+  {
+    id: 18, name: "Juan Vega", initials: "JV", avatar: "JV",
+    teams: [
+      { name: "Uruguay", flag: "🇺🇾", group: "H" },
+      { name: "Curazao", flag: "🇨🇼", group: "E" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 18, trend: "same",
+  },
+  {
+    id: 19, name: "Laura", initials: "LA", avatar: "LA",
+    teams: [
+      { name: "Brasil",  flag: "🇧🇷", group: "C" },
+      { name: "Algeria", flag: "🇩🇿", group: "J" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 19, trend: "same",
+  },
+  {
+    id: 20, name: "Lina", initials: "LI", avatar: "LI",
+    teams: [
+      { name: "Korea Sur",  flag: "🇰🇷", group: "A" },
+      { name: "Cabo Verde", flag: "🇨🇻", group: "H" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 20, trend: "same",
+  },
+  {
+    id: 21, name: "Magnolia", initials: "MA", avatar: "MA",
+    teams: [
+      { name: "Sur África", flag: "🇿🇦", group: "A" },
+      { name: "Irán",       flag: "🇮🇷", group: "G" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 21, trend: "same",
+  },
+  {
+    id: 22, name: "Nata", initials: "NA", avatar: "NA",
+    teams: [
+      { name: "Irak",      flag: "🇮🇶", group: "I" },
+      { name: "Argentina", flag: "🇦🇷", group: "J" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 22, trend: "same",
+  },
+  {
+    id: 23, name: "Sandra", initials: "SA", avatar: "SA",
+    teams: [
+      { name: "Turquía",      flag: "🇹🇷", group: "D" },
+      { name: "Países Bajos", flag: "🇳🇱", group: "F" },
+    ],
+    points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 23, trend: "same",
+  },
+  {
+    id: 24, name: "Tiko", initials: "TI", avatar: "TI",
+    teams: [
+      { name: "Arabia Saudita", flag: "🇸🇦", group: "H" },
+      { name: "Colombia",       flag: "🇨🇴", group: "K" },
     ],
     points: 0, correctScores: 0, correctResults: 0, totalPredictions: 0, position: 24, trend: "same",
   },
