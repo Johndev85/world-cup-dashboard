@@ -49,7 +49,7 @@ export function Sidebar({ activeView, onViewChange, isOpen, onToggle }: SidebarP
         )}>
           <FifaTrophy className={cn(
             "text-primary flex-shrink-0",
-            isOpen ? "w-8 h-10" : "w-6 h-8"
+            isOpen ? "w-10 h-12" : "w-7 h-9"
           )} />
           {isOpen && (
             <div className="min-w-0">
