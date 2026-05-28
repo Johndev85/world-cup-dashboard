@@ -80,7 +80,7 @@ export function Leaderboard({ entries }: { entries: LeaderboardEntry[] }) {
                   <span className="text-xs text-muted-foreground truncate">{entry.teams[0].name}</span>
                   <span className="text-xs text-muted-foreground/40">·</span>
                   <span className="text-xs">{entry.teams[1].flag}</span>
-                  <span className="text-xs text-muted-foreground truncate hidden sm:inline">{entry.teams[1].name}</span>
+                  <span className="text-xs text-muted-foreground truncate">{entry.teams[1].name}</span>
                 </div>
               </div>
             </div>

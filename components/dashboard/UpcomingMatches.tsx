@@ -55,11 +55,11 @@ export function UpcomingMatches({ allMatches }: { allMatches: Match[] }) {
             {/* Match */}
             <div className="flex items-center gap-2 flex-1 min-w-0">
               <span className="text-sm">{match.homeFlag}</span>
-              <span className="text-sm font-medium text-foreground/90 truncate hidden md:block">
+              <span className="text-sm font-medium text-foreground/90 truncate">
                 {match.homeTeam}
               </span>
               <span className="text-xs text-muted-foreground mx-1">vs</span>
-              <span className="text-sm font-medium text-foreground/90 truncate hidden md:block">
+              <span className="text-sm font-medium text-foreground/90 truncate">
                 {match.awayTeam}
               </span>
               <span className="text-sm">{match.awayFlag}</span>

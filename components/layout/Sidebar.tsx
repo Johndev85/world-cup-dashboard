@@ -34,9 +34,13 @@ export function Sidebar({ activeView, onViewChange, isOpen, onToggle }: SidebarP
 
       {/* Sidebar */}
       <aside className={cn(
-        "fixed top-0 left-0 h-full z-50 flex flex-col bg-sidebar border-r border-sidebar-border transition-all duration-300",
-        isOpen ? "w-56" : "w-16",
-        "lg:relative lg:z-auto"
+        "flex flex-col bg-sidebar border-r border-sidebar-border transition-all duration-300 shrink-0",
+        /* Desktop: relative, takes space in flex */
+        "hidden lg:flex",
+        isOpen ? "lg:w-56" : "lg:w-16",
+        /* Mobile: fixed overlay, hidden when closed */
+        "fixed top-0 left-0 h-full z-50 lg:static lg:h-auto",
+        isOpen ? "flex w-56" : "lg:flex -ml-56 lg:ml-0"
       )}>
         {/* Logo */}
         <div className={cn(

@@ -72,7 +72,7 @@ export function GroupStandingsView({ groupStandings }: { groupStandings: GroupSt
       </div>
 
       {/* Groups grid — 1 col on mobile, 2 on lg, 3 on 2xl */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-5 overflow-x-auto">
         {displayed.map((g) => {
           const accent = GROUP_ACCENT[g.group]
           return (
@@ -94,7 +94,7 @@ export function GroupStandingsView({ groupStandings }: { groupStandings: GroupSt
                     <span
                       key={col.key}
                       title={col.title}
-                      className="text-[10px] font-semibold text-muted-foreground w-8 text-center uppercase tracking-wide"
+                      className="text-[10px] font-semibold text-muted-foreground w-6 sm:w-8 text-center uppercase tracking-wide"
                     >
                       {col.label}
                     </span>
@@ -146,7 +146,7 @@ export function GroupStandingsView({ groupStandings }: { groupStandings: GroupSt
                           <span
                             key={i}
                             className={cn(
-                              "w-8 text-center text-xs font-mono flex-shrink-0",
+                              "w-6 sm:w-8 text-center text-xs font-mono flex-shrink-0",
                               i === 7
                                 ? "font-bold text-foreground"
                                 : i < 4

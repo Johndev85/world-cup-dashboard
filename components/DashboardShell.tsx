@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { useTheme } from "next-themes"
 import { Sidebar } from "./layout/Sidebar"
 import { Header } from "./layout/Header"
@@ -19,6 +19,10 @@ type View = "dashboard" | "calendar" | "standings" | "bracket" | "polla"
 export function DashboardShell() {
   const [activeView, setActiveView] = useState<View>("dashboard")
   const [sidebarOpen, setSidebarOpen] = useState(true)
+
+  useEffect(() => {
+    if (window.innerWidth < 1024) setSidebarOpen(false)
+  }, [])
   const { theme, setTheme } = useTheme()
   const isDark = theme === "dark"
   const toggleTheme = () => setTheme(isDark ? "light" : "dark")
