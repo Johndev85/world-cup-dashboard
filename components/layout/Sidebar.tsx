@@ -39,7 +39,7 @@ export function Sidebar({ activeView, onViewChange, isOpen, onToggle }: SidebarP
         "hidden lg:flex",
         isOpen ? "lg:w-56" : "lg:w-16",
         /* Mobile: fixed overlay, hidden when closed */
-        "fixed top-0 left-0 h-full z-50 lg:static lg:h-auto",
+        "fixed top-0 left-0 h-full z-50 lg:relative lg:z-auto lg:h-auto",
         isOpen ? "flex w-56" : "lg:flex -ml-56 lg:ml-0"
       )}>
         {/* Logo */}
