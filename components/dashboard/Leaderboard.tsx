@@ -1,10 +1,14 @@
 "use client"
 
-import { participants } from "@/lib/wc2026-data"
-import { TrendingUp, TrendingDown, Minus, Trophy } from "lucide-react"
+import type { LeaderboardEntry } from "@/lib/api/leaderboard"
+import { Trophy, Medal } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-export function Leaderboard() {
+function formatCOP(n: number) {
+  return new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(n)
+}
+
+export function Leaderboard({ entries }: { entries: LeaderboardEntry[] }) {
   return (
     <div className="bg-card border border-border rounded-lg overflow-hidden">
       {/* Header */}
@@ -16,28 +20,26 @@ export function Leaderboard() {
           </span>
         </div>
         <span className="text-xs text-muted-foreground">
-          {participants.length} participantes
+          {entries.length} participantes
         </span>
       </div>
 
       {/* Table header */}
-      <div className="grid grid-cols-[2rem_1fr_3rem_3rem_3rem_3rem] items-center px-4 py-2 border-b border-border/50">
+      <div className="grid grid-cols-[2rem_1fr_4rem] items-center px-4 py-2 border-b border-border/50">
         <span className="text-xs text-muted-foreground">#</span>
         <span className="text-xs text-muted-foreground">Nombre</span>
-        <span className="text-xs text-muted-foreground text-center">Pts</span>
-        <span className="text-xs text-muted-foreground text-center hidden sm:block">Res</span>
-        <span className="text-xs text-muted-foreground text-center hidden sm:block">Exac</span>
-        <span className="text-xs text-muted-foreground text-center hidden sm:block">Pred</span>
+        <span className="text-xs text-muted-foreground text-right">Puntos</span>
       </div>
 
       {/* Rows */}
       <div className="divide-y divide-border/50">
-        {participants.map((p, idx) => (
+        {entries.map((entry, idx) => (
           <div
-            key={p.id}
+            key={entry.id}
             className={cn(
-              "grid grid-cols-[2rem_1fr_3rem_3rem_3rem_3rem] items-center px-4 py-3 transition-colors hover:bg-secondary/40",
-              idx === 0 && "bg-primary/5"
+              "grid grid-cols-[2rem_1fr_4rem] items-center px-4 py-3 transition-colors hover:bg-secondary/40",
+              idx === 0 && "bg-primary/5",
+              entry.prize > 0 && "bg-primary/5"
             )}
           >
             {/* Position */}
@@ -49,7 +51,7 @@ export function Leaderboard() {
               )}
             </div>
 
-            {/* Name + avatar */}
+            {/* Name + teams */}
             <div className="flex items-center gap-2 min-w-0">
               <div
                 className={cn(
@@ -59,7 +61,7 @@ export function Leaderboard() {
                     : "bg-secondary text-secondary-foreground"
                 )}
               >
-                {p.initials}
+                {entry.initials}
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5">
@@ -67,45 +69,35 @@ export function Leaderboard() {
                     "text-sm font-medium truncate",
                     idx === 0 ? "text-foreground" : "text-foreground/80"
                   )}>
-                    {p.name}
+                    {entry.name}
                   </span>
-                  {p.trend === "up" && <TrendingUp className="w-3 h-3 text-green-400 flex-shrink-0" />}
-                  {p.trend === "down" && <TrendingDown className="w-3 h-3 text-accent flex-shrink-0" />}
-                  {p.trend === "same" && <Minus className="w-3 h-3 text-muted-foreground flex-shrink-0" />}
+                  {entry.prize > 0 && (
+                    <Medal className="w-3 h-3 text-primary flex-shrink-0" />
+                  )}
                 </div>
                 <div className="flex items-center gap-1 mt-0.5">
-                  <span className="text-xs">{p.teams[0].flag}</span>
-                  <span className="text-xs text-muted-foreground truncate">{p.teams[0].name}</span>
+                  <span className="text-xs">{entry.teams[0].flag}</span>
+                  <span className="text-xs text-muted-foreground truncate">{entry.teams[0].name}</span>
                   <span className="text-xs text-muted-foreground/40">·</span>
-                  <span className="text-xs">{p.teams[1].flag}</span>
-                  <span className="text-xs text-muted-foreground truncate hidden sm:inline">{p.teams[1].name}</span>
+                  <span className="text-xs">{entry.teams[1].flag}</span>
+                  <span className="text-xs text-muted-foreground truncate hidden sm:inline">{entry.teams[1].name}</span>
                 </div>
               </div>
             </div>
 
-            {/* Points */}
-            <div className="text-center">
+            {/* Points + Prize */}
+            <div className="text-right">
               <span className={cn(
                 "font-bold text-sm",
                 idx === 0 ? "text-primary" : "text-foreground/90"
               )}>
-                {p.points}
+                {entry.points}
               </span>
-            </div>
-
-            {/* Correct results */}
-            <div className="text-center hidden sm:block">
-              <span className="text-sm text-muted-foreground">{p.correctResults}</span>
-            </div>
-
-            {/* Exact scores */}
-            <div className="text-center hidden sm:block">
-              <span className="text-sm text-muted-foreground">{p.correctScores}</span>
-            </div>
-
-            {/* Total predictions */}
-            <div className="text-center hidden sm:block">
-              <span className="text-sm text-muted-foreground">{p.totalPredictions}</span>
+              {entry.prize > 0 && (
+                <div className="text-[10px] text-primary font-medium">
+                  {formatCOP(entry.prize)}
+                </div>
+              )}
             </div>
           </div>
         ))}
@@ -113,9 +105,9 @@ export function Leaderboard() {
 
       {/* Legend */}
       <div className="px-4 py-2 border-t border-border/50 flex gap-4 flex-wrap">
-        <span className="text-xs text-muted-foreground">Pts = Puntos</span>
-        <span className="text-xs text-muted-foreground">Res = Resultado correcto</span>
-        <span className="text-xs text-muted-foreground">Exac = Marcador exacto</span>
+        <span className="text-xs text-muted-foreground">Victoria = 3 pts</span>
+        <span className="text-xs text-muted-foreground">Empate = 1 pt</span>
+        <span className="text-xs text-muted-foreground">Derrota = 0 pts</span>
       </div>
     </div>
   )

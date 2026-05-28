@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { useTheme } from "next-themes"
 import { Sidebar } from "./layout/Sidebar"
 import { Header } from "./layout/Header"
@@ -12,6 +12,7 @@ import { GroupStandingsView } from "./calendar/GroupStandings"
 import { KnockoutBracket } from "./bracket/KnockoutBracket"
 import { PollaView } from "./polla/PollaView"
 import { useWorldCupData } from "@/hooks/useWorldCupData"
+import { computeLeaderboard } from "@/lib/api/leaderboard"
 
 type View = "dashboard" | "calendar" | "standings" | "bracket" | "polla"
 
@@ -23,6 +24,11 @@ export function DashboardShell() {
   const toggleTheme = () => setTheme(isDark ? "light" : "dark")
 
   const { data, loading, error, refresh } = useWorldCupData()
+
+  const leaderboard = useMemo(
+    () => data ? computeLeaderboard(data.allMatches) : [],
+    [data]
+  )
 
   return (
     <div className="flex h-screen overflow-hidden bg-background">
@@ -69,7 +75,7 @@ export function DashboardShell() {
                   <StatsCards allMatches={data.allMatches} />
                   <div className="grid grid-cols-1 xl:grid-cols-[1fr_380px] gap-6">
                     <UpcomingMatches allMatches={data.allMatches} />
-                    <Leaderboard />
+                    <Leaderboard entries={leaderboard} />
                   </div>
                 </div>
               )}

@@ -16,6 +16,8 @@ interface ApiMatch {
   score?: {
     ft?: [number, number]
     ht?: [number, number]
+    et?: [number, number]
+    p?: [number, number]
   }
 }
 
@@ -66,6 +68,8 @@ function apiMatchToMatch(apiMatch: ApiMatch, id: number): Match {
     awayFlag: team2Info.flag,
     homeScore: apiMatch.score?.ft?.[0] ?? null,
     awayScore: apiMatch.score?.ft?.[1] ?? null,
+    homePenalties: apiMatch.score?.p?.[0] ?? null,
+    awayPenalties: apiMatch.score?.p?.[1] ?? null,
     venue: getVenueFromGround(apiMatch.ground),
     city: getCityFromGround(apiMatch.ground),
     country,

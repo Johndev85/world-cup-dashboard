@@ -24,6 +24,8 @@ export interface Match {
   awayFlag: string
   homeScore: number | null
   awayScore: number | null
+  homePenalties?: number | null
+  awayPenalties?: number | null
   venue: string
   city: string
   country: "USA" | "CAN" | "MEX"
