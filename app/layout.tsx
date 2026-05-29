@@ -16,10 +16,34 @@ const barlowCondensed = Barlow_Condensed({
   variable: '--font-barlow-condensed',
 })
 
+const BASE_URL = 'https://polla-mundial-world-cup.vercel.app'
+
 export const metadata: Metadata = {
-  title: 'Polla FIFA World Cup 2026',
+  title: 'Polla Mundialista FIFA 2026',
   description: 'Dashboard para seguimiento de la polla del Mundial FIFA 2026',
   generator: 'v0.app',
+  openGraph: {
+    title: 'Polla Mundialista FIFA 2026',
+    description: 'Dashboard para seguimiento de la polla del Mundial FIFA 2026',
+    url: BASE_URL,
+    siteName: 'Polla Mundialista FIFA 2026',
+    images: [
+      {
+        url: `${BASE_URL}/Desktop-view.png`,
+        width: 2912,
+        height: 1672,
+        alt: 'Polla Mundialista FIFA 2026',
+      },
+    ],
+    locale: 'es_CO',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Polla Mundialista FIFA 2026',
+    description: 'Dashboard para seguimiento de la polla del Mundial FIFA 2026',
+    images: [`${BASE_URL}/Desktop-view.png`],
+  },
 }
 
 export default function RootLayout({
