@@ -7,6 +7,7 @@ import { Header } from "./layout/Header"
 import { StatsCards } from "./dashboard/StatsCards"
 import { Leaderboard } from "./dashboard/Leaderboard"
 import { UpcomingMatches } from "./dashboard/UpcomingMatches"
+import { WorldCupCountdown } from "./dashboard/WorldCupCountdown"
 import { CalendarView } from "./calendar/CalendarView"
 import { GroupStandingsView } from "./calendar/GroupStandings"
 import { KnockoutBracket } from "./bracket/KnockoutBracket"
@@ -76,8 +77,9 @@ export function DashboardShell() {
             <>
               {activeView === "dashboard" && (
                 <div className="space-y-6 max-w-6xl mx-auto">
+                  <WorldCupCountdown />
                   <StatsCards allMatches={data.allMatches} />
-                  <div className="grid grid-cols-1 xl:grid-cols-[1fr_380px] gap-6">
+                  <div className="grid grid-cols-1 xl:grid-cols-[1fr_380px] gap-6 items-start">
                     <UpcomingMatches allMatches={data.allMatches} />
                     <Leaderboard entries={leaderboard} />
                   </div>
@@ -115,6 +117,25 @@ export function DashboardShell() {
               )}
             </>
           )}
+
+          {/* Footer */}
+          <footer className="mt-auto pt-8 pb-6 border-t border-border/40">
+            <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
+              <span>© {new Date().getFullYear()}</span>
+              <a
+                href="https://github.com/Johndev85"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-foreground/70 hover:text-primary transition-colors"
+              >
+                johndev85
+              </a>
+              <span>con</span>
+              <span>💙</span>
+              <span>&</span>
+              <span>☕</span>
+            </div>
+          </footer>
         </main>
       </div>
     </div>

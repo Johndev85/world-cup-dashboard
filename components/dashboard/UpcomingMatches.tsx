@@ -2,7 +2,7 @@
 
 import type { Match } from "@/lib/wc2026-data"
 import { PHASE_COLORS } from "@/lib/wc2026-data"
-import { Clock } from "lucide-react"
+import { Clock, CalendarX } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 function formatDate(iso: string) {
@@ -24,7 +24,7 @@ export function UpcomingMatches({ allMatches }: { allMatches: Match[] }) {
     <div className="bg-card border border-border rounded-lg overflow-hidden">
       <div className="flex items-center justify-between px-4 py-3 border-b border-border">
         <div className="flex items-center gap-2">
-          <Clock className="w-4 h-4 text-primary" />
+          <Clock className="w-4 h-4 text-green-600 dark:text-green-400" />
           <span className="text-sm font-semibold tracking-wider uppercase text-foreground/80">
             Próximos Partidos
           </span>
@@ -32,46 +32,53 @@ export function UpcomingMatches({ allMatches }: { allMatches: Match[] }) {
         <span className="text-xs text-muted-foreground">fase de grupos</span>
       </div>
 
-      <div className="divide-y divide-border/50">
-        {upcoming.map((match) => (
-          <div
-            key={match.id}
-            className="px-4 py-3 flex items-center gap-3 hover:bg-secondary/40 transition-colors"
-          >
-            {/* Date */}
-            <div className="text-center w-12 flex-shrink-0">
-              <div className="text-xs font-bold text-primary">{formatDate(match.date)}</div>
-              <div className="text-xs text-muted-foreground">{formatTime(match.date)}</div>
-            </div>
+      {upcoming.length === 0 ? (
+        <div className="px-4 py-8 flex flex-col items-center gap-2 text-center">
+          <CalendarX className="w-8 h-8 text-muted-foreground/50" />
+          <span className="text-sm text-muted-foreground">No hay próximos partidos de grupos</span>
+        </div>
+      ) : (
+        <div className="divide-y divide-border/50">
+          {upcoming.map((match) => (
+            <div
+              key={match.id}
+              className="px-4 py-3 flex items-center gap-3 hover:bg-secondary/40 transition-colors"
+            >
+              {/* Date */}
+              <div className="text-center w-12 flex-shrink-0">
+                <div className="text-xs font-bold text-green-700 dark:text-green-400">{formatDate(match.date)}</div>
+                <div className="text-xs text-muted-foreground">{formatTime(match.date)}</div>
+              </div>
 
-            {/* Phase badge */}
-            <span className={cn(
-              "text-xs px-1.5 py-0.5 rounded font-mono font-semibold flex-shrink-0 hidden sm:inline",
-              PHASE_COLORS[match.phase]
-            )}>
-              {match.phase.replace("Grupo ", "G")}
-            </span>
-
-            {/* Match */}
-            <div className="flex items-center gap-2 flex-1 min-w-0">
-              <span className="text-sm">{match.homeFlag}</span>
-              <span className="text-sm font-medium text-foreground/90 truncate">
-                {match.homeTeam}
+              {/* Phase badge */}
+              <span className={cn(
+                "text-xs px-1.5 py-0.5 rounded font-mono font-semibold flex-shrink-0 hidden sm:inline",
+                PHASE_COLORS[match.phase]
+              )}>
+                {match.phase.replace("Grupo ", "G")}
               </span>
-              <span className="text-xs text-muted-foreground mx-1">vs</span>
-              <span className="text-sm font-medium text-foreground/90 truncate">
-                {match.awayTeam}
-              </span>
-              <span className="text-sm">{match.awayFlag}</span>
-            </div>
 
-            {/* Venue */}
-            <div className="text-xs text-muted-foreground text-right hidden lg:block max-w-[120px] truncate">
-              {match.city}
+              {/* Match */}
+              <div className="flex items-center gap-2 flex-1 min-w-0">
+                <span className="text-sm">{match.homeFlag}</span>
+                <span className="text-sm font-medium text-foreground truncate">
+                  {match.homeTeam}
+                </span>
+                <span className="text-xs text-muted-foreground mx-1">vs</span>
+                <span className="text-sm font-medium text-foreground truncate">
+                  {match.awayTeam}
+                </span>
+                <span className="text-sm">{match.awayFlag}</span>
+              </div>
+
+              {/* Venue */}
+              <div className="text-xs text-muted-foreground text-right hidden lg:block max-w-[120px] truncate">
+                {match.city}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

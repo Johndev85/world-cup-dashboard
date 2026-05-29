@@ -19,7 +19,7 @@ const VIEW_TITLES: Record<View, { title: string; sub: string }> = {
   bracket:    { title: "Eliminatorias",    sub: "Cuadro de octavos a la gran final" },
 }
 
-export function Header({ activeView, onMenuToggle, onThemeToggle, isDark }: HeaderProps) {
+export function Header({ activeView, onMenuToggle, onThemeToggle }: HeaderProps) {
   const { title, sub } = VIEW_TITLES[activeView]
 
   return (
@@ -39,26 +39,21 @@ export function Header({ activeView, onMenuToggle, onThemeToggle, isDark }: Head
       </div>
 
       {/* Right side */}
-      <div className="flex items-center gap-2 flex-shrink-0">
-        {/* Theme toggle */}
+      <div className="flex items-center gap-3 flex-shrink-0">
+        {/* Theme toggle — CSS handles visibility, no hydration mismatch */}
         <button
           onClick={onThemeToggle}
-          aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-          className="w-8 h-8 rounded-lg border border-border flex items-center justify-center hover:bg-secondary transition-colors"
+          aria-label="Cambiar tema"
+          className="w-9 h-9 rounded-lg border border-border flex items-center justify-center hover:bg-secondary transition-colors"
         >
-          {isDark
-            ? <Sun className="w-4 h-4 text-primary" />
-            : <Moon className="w-4 h-4 text-muted-foreground" />
-          }
+          <Sun className="w-4 h-4 text-amber-500 block dark:hidden" />
+          <Moon className="w-4 h-4 text-muted-foreground hidden dark:block" />
         </button>
 
         {/* WC Badge */}
         <div className="hidden sm:flex flex-col items-end">
           <span className="text-[11px] font-bold text-primary tracking-widest font-mono">FIFA</span>
           <span className="text-[9px] text-muted-foreground tracking-wider uppercase">WORLD CUP 2026</span>
-        </div>
-        <div className="w-8 h-8 rounded-full border border-primary/40 flex items-center justify-center bg-primary/10">
-          <span className="text-base leading-none">⚽</span>
         </div>
       </div>
     </header>

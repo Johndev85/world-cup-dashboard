@@ -90,7 +90,7 @@ export function PollaView() {
             <Trophy className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary/70">
+            <p className="text-xs font-semibold uppercase tracking-widest text-green-700 dark:text-green-300">
               Premio Campeon
             </p>
             <p className="text-2xl font-bold text-primary font-mono">
@@ -107,7 +107,7 @@ export function PollaView() {
             <Medal className="w-6 h-6 text-accent" />
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-accent/70">
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-700 dark:text-blue-300">
               Premio Subcampeon
             </p>
             <p className="text-2xl font-bold text-accent font-mono">

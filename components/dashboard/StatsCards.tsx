@@ -30,7 +30,7 @@ export function StatsCards({ allMatches }: { allMatches: Match[] }) {
       value: totalParticipants,
       sub: "2 equipos c/u",
       icon: Users,
-      color: "text-blue-400",
+      color: "text-blue-600 dark:text-blue-400",
       bg: "bg-blue-500/10",
     },
     {
@@ -38,7 +38,7 @@ export function StatsCards({ allMatches }: { allMatches: Match[] }) {
       value: finishedMatches,
       sub: `de ${totalMatches} partidos`,
       icon: Calendar,
-      color: "text-green-400",
+      color: "text-green-600 dark:text-green-400",
       bg: "bg-green-500/10",
     },
     {

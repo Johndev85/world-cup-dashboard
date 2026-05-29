@@ -1,6 +1,7 @@
 "use client"
 
-import { Match, PHASE_COLORS } from "@/lib/wc2026-data"
+import type { Match } from "@/lib/wc2026-data"
+import { PHASE_COLORS } from "@/lib/wc2026-data"
 import { MapPin } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -32,7 +33,7 @@ export function MatchCard({ match, compact = false }: MatchCardProps) {
       {/* Top row: phase badge + time + status */}
       <div className="flex items-center justify-between mb-3">
         <span className={cn(
-          "text-[10px] px-2 py-0.5 rounded font-mono font-semibold uppercase tracking-wide",
+          "text-[11px] px-2 py-0.5 rounded font-mono font-semibold uppercase tracking-wide",
           PHASE_COLORS[match.phase]
         )}>
           {match.phase}
@@ -41,17 +42,17 @@ export function MatchCard({ match, compact = false }: MatchCardProps) {
         <div className="flex items-center gap-2">
           {isLive && (
             <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span className="text-[10px] font-bold text-accent uppercase">En Vivo</span>
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <span className="text-[11px] font-bold text-accent uppercase">En Vivo</span>
             </span>
           )}
           {isPending && (
-            <span className="text-[10px] text-muted-foreground font-mono">
+            <span className="text-[11px] text-muted-foreground font-mono">
               {formatTime(match.date)}
             </span>
           )}
           {isFinished && (
-            <span className="text-[10px] text-muted-foreground uppercase">Finalizado</span>
+            <span className="text-[11px] text-muted-foreground uppercase">Finalizado</span>
           )}
         </div>
       </div>
@@ -63,25 +64,25 @@ export function MatchCard({ match, compact = false }: MatchCardProps) {
           <span className="text-lg leading-none flex-shrink-0">{match.homeFlag}</span>
           <span className={cn(
             "text-sm font-semibold truncate",
-            isLive || isFinished ? "text-foreground" : "text-foreground/80"
+            isLive || isFinished ? "text-foreground" : "text-foreground"
           )}>
             {match.homeTeam}
           </span>
         </div>
 
         {/* Score / vs */}
-        <div className="flex items-center gap-1 flex-shrink-0">
+        <div className="flex items-center gap-1.5 flex-shrink-0">
           {isFinished || isLive ? (
             <>
               <span className={cn(
-                "w-7 h-7 flex items-center justify-center rounded text-sm font-bold font-mono",
+                "w-8 h-8 flex items-center justify-center rounded text-sm font-bold font-mono",
                 isLive ? "bg-accent/20 text-accent" : "bg-secondary text-foreground"
               )}>
                 {match.homeScore ?? "-"}
               </span>
               <span className="text-muted-foreground text-xs">:</span>
               <span className={cn(
-                "w-7 h-7 flex items-center justify-center rounded text-sm font-bold font-mono",
+                "w-8 h-8 flex items-center justify-center rounded text-sm font-bold font-mono",
                 isLive ? "bg-accent/20 text-accent" : "bg-secondary text-foreground"
               )}>
                 {match.awayScore ?? "-"}
@@ -96,7 +97,7 @@ export function MatchCard({ match, compact = false }: MatchCardProps) {
         <div className="flex-1 flex items-center justify-end gap-2 min-w-0">
           <span className={cn(
             "text-sm font-semibold truncate text-right",
-            isLive || isFinished ? "text-foreground" : "text-foreground/80"
+            isLive || isFinished ? "text-foreground" : "text-foreground"
           )}>
             {match.awayTeam}
           </span>
