@@ -36,8 +36,31 @@ const ROUND_TO_PHASE: Record<string, Phase> = {
 }
 
 function parseDateTime(date: string, time: string): string {
-  const timeClean = time.replace(/\s*UTC[+-]\d+/, "").trim()
-  return `${date}T${timeClean}:00`
+  const match = time.match(/(\d{1,2}:\d{2})\s*UTC([+-]\d+)/)
+  if (!match) return `${date}T${time}:00-05:00`
+  const [, localTime, offsetStr] = match
+  const venueOffset = parseInt(offsetStr)
+  const [h, m] = localTime.split(":").map(Number)
+  // Convert venue local time to UTC: utc = local - offset
+  const utcHours = h - venueOffset
+  // Convert UTC to COT (UTC-5): cot = utc - 5
+  let cotHours = utcHours - 5
+  let dayOffset = 0
+  if (cotHours < 0) {
+    cotHours += 24
+    dayOffset = -1
+  } else if (cotHours >= 24) {
+    cotHours -= 24
+    dayOffset = 1
+  }
+  const baseDate = new Date(`${date}T00:00:00Z`)
+  baseDate.setUTCDate(baseDate.getUTCDate() + dayOffset)
+  const yyyy = baseDate.getUTCFullYear()
+  const mm = String(baseDate.getUTCMonth() + 1).padStart(2, "0")
+  const dd = String(baseDate.getUTCDate()).padStart(2, "0")
+  const hh = String(cotHours).padStart(2, "0")
+  const mi = String(m).padStart(2, "0")
+  return `${yyyy}-${mm}-${dd}T${hh}:${mi}:00-05:00`
 }
 
 function mapRound(round: string, group?: string): Phase {

@@ -7,12 +7,12 @@ import { cn } from "@/lib/utils"
 
 function formatDate(iso: string) {
   const d = new Date(iso)
-  return d.toLocaleDateString("es-ES", { day: "2-digit", month: "short" })
+  return d.toLocaleDateString("es-ES", { day: "2-digit", month: "short", timeZone: "America/Bogota" })
 }
 
 function formatTime(iso: string) {
   const d = new Date(iso)
-  return d.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" })
+  return d.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit", timeZone: "America/Bogota" })
 }
 
 export function UpcomingMatches({ allMatches }: { allMatches: Match[] }) {

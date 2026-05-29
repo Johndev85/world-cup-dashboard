@@ -90,7 +90,7 @@ const groupMatches: Match[] = [
   {
     id: 1,
     phase: "Grupo A",
-    date: "2026-06-11T19:00:00",
+    date: "2026-06-11T19:00:00-05:00",
     homeTeam: "México",
     awayTeam: "Argentina",
     homeFlag: "🇲🇽",
@@ -105,7 +105,7 @@ const groupMatches: Match[] = [
   {
     id: 2,
     phase: "Grupo A",
-    date: "2026-06-11T22:00:00",
+    date: "2026-06-11T22:00:00-05:00",
     homeTeam: "Ecuador",
     awayTeam: "Hungría",
     homeFlag: "🇪🇨",
@@ -120,7 +120,7 @@ const groupMatches: Match[] = [
   {
     id: 3,
     phase: "Grupo A",
-    date: "2026-06-15T19:00:00",
+    date: "2026-06-15T19:00:00-05:00",
     homeTeam: "Argentina",
     awayTeam: "Ecuador",
     homeFlag: "🇦🇷",
@@ -135,7 +135,7 @@ const groupMatches: Match[] = [
   {
     id: 4,
     phase: "Grupo A",
-    date: "2026-06-15T22:00:00",
+    date: "2026-06-15T22:00:00-05:00",
     homeTeam: "Hungría",
     awayTeam: "México",
     homeFlag: "🇭🇺",
@@ -150,7 +150,7 @@ const groupMatches: Match[] = [
   {
     id: 5,
     phase: "Grupo A",
-    date: "2026-06-19T19:00:00",
+    date: "2026-06-19T19:00:00-05:00",
     homeTeam: "México",
     awayTeam: "Ecuador",
     homeFlag: "🇲🇽",
@@ -165,7 +165,7 @@ const groupMatches: Match[] = [
   {
     id: 6,
     phase: "Grupo A",
-    date: "2026-06-19T19:00:00",
+    date: "2026-06-19T19:00:00-05:00",
     homeTeam: "Argentina",
     awayTeam: "Hungría",
     homeFlag: "🇦🇷",
@@ -182,7 +182,7 @@ const groupMatches: Match[] = [
   {
     id: 7,
     phase: "Grupo B",
-    date: "2026-06-12T16:00:00",
+    date: "2026-06-12T16:00:00-05:00",
     homeTeam: "USA",
     awayTeam: "Brasil",
     homeFlag: "🇺🇸",
@@ -197,7 +197,7 @@ const groupMatches: Match[] = [
   {
     id: 8,
     phase: "Grupo B",
-    date: "2026-06-12T20:00:00",
+    date: "2026-06-12T20:00:00-05:00",
     homeTeam: "Alemania",
     awayTeam: "Japón",
     homeFlag: "🇩🇪",
@@ -212,7 +212,7 @@ const groupMatches: Match[] = [
   {
     id: 9,
     phase: "Grupo B",
-    date: "2026-06-16T16:00:00",
+    date: "2026-06-16T16:00:00-05:00",
     homeTeam: "Brasil",
     awayTeam: "Alemania",
     homeFlag: "🇧🇷",
@@ -227,7 +227,7 @@ const groupMatches: Match[] = [
   {
     id: 10,
     phase: "Grupo B",
-    date: "2026-06-16T20:00:00",
+    date: "2026-06-16T20:00:00-05:00",
     homeTeam: "Japón",
     awayTeam: "USA",
     homeFlag: "🇯🇵",
@@ -242,7 +242,7 @@ const groupMatches: Match[] = [
   {
     id: 11,
     phase: "Grupo B",
-    date: "2026-06-20T20:00:00",
+    date: "2026-06-20T20:00:00-05:00",
     homeTeam: "USA",
     awayTeam: "Alemania",
     homeFlag: "🇺🇸",
@@ -257,7 +257,7 @@ const groupMatches: Match[] = [
   {
     id: 12,
     phase: "Grupo B",
-    date: "2026-06-20T20:00:00",
+    date: "2026-06-20T20:00:00-05:00",
     homeTeam: "Brasil",
     awayTeam: "Japón",
     homeFlag: "🇧🇷",
@@ -274,7 +274,7 @@ const groupMatches: Match[] = [
   {
     id: 13,
     phase: "Grupo C",
-    date: "2026-06-12T18:00:00",
+    date: "2026-06-12T18:00:00-05:00",
     homeTeam: "España",
     awayTeam: "Colombia",
     homeFlag: "🇪🇸",
@@ -289,7 +289,7 @@ const groupMatches: Match[] = [
   {
     id: 14,
     phase: "Grupo C",
-    date: "2026-06-12T21:00:00",
+    date: "2026-06-12T21:00:00-05:00",
     homeTeam: "Marruecos",
     awayTeam: "Bélgica",
     homeFlag: "🇲🇦",
@@ -304,7 +304,7 @@ const groupMatches: Match[] = [
   {
     id: 15,
     phase: "Grupo C",
-    date: "2026-06-16T18:00:00",
+    date: "2026-06-16T18:00:00-05:00",
     homeTeam: "Colombia",
     awayTeam: "Marruecos",
     homeFlag: "🇨🇴",
@@ -319,7 +319,7 @@ const groupMatches: Match[] = [
   {
     id: 16,
     phase: "Grupo C",
-    date: "2026-06-16T21:00:00",
+    date: "2026-06-16T21:00:00-05:00",
     homeTeam: "Bélgica",
     awayTeam: "España",
     homeFlag: "🇧🇪",
@@ -334,7 +334,7 @@ const groupMatches: Match[] = [
   {
     id: 17,
     phase: "Grupo C",
-    date: "2026-06-20T20:00:00",
+    date: "2026-06-20T20:00:00-05:00",
     homeTeam: "España",
     awayTeam: "Marruecos",
     homeFlag: "🇪🇸",
@@ -349,7 +349,7 @@ const groupMatches: Match[] = [
   {
     id: 18,
     phase: "Grupo C",
-    date: "2026-06-20T20:00:00",
+    date: "2026-06-20T20:00:00-05:00",
     homeTeam: "Colombia",
     awayTeam: "Bélgica",
     homeFlag: "🇨🇴",
@@ -366,7 +366,7 @@ const groupMatches: Match[] = [
   {
     id: 19,
     phase: "Grupo D",
-    date: "2026-06-13T17:00:00",
+    date: "2026-06-13T17:00:00-05:00",
     homeTeam: "Francia",
     awayTeam: "Uruguay",
     homeFlag: "🇫🇷",
@@ -381,7 +381,7 @@ const groupMatches: Match[] = [
   {
     id: 20,
     phase: "Grupo D",
-    date: "2026-06-13T20:00:00",
+    date: "2026-06-13T20:00:00-05:00",
     homeTeam: "Senegal",
     awayTeam: "Polonia",
     homeFlag: "🇸🇳",
@@ -396,7 +396,7 @@ const groupMatches: Match[] = [
   {
     id: 21,
     phase: "Grupo D",
-    date: "2026-06-17T17:00:00",
+    date: "2026-06-17T17:00:00-05:00",
     homeTeam: "Uruguay",
     awayTeam: "Senegal",
     homeFlag: "🇺🇾",
@@ -411,7 +411,7 @@ const groupMatches: Match[] = [
   {
     id: 22,
     phase: "Grupo D",
-    date: "2026-06-17T20:00:00",
+    date: "2026-06-17T20:00:00-05:00",
     homeTeam: "Polonia",
     awayTeam: "Francia",
     homeFlag: "🇵🇱",
@@ -426,7 +426,7 @@ const groupMatches: Match[] = [
   {
     id: 23,
     phase: "Grupo D",
-    date: "2026-06-21T20:00:00",
+    date: "2026-06-21T20:00:00-05:00",
     homeTeam: "Francia",
     awayTeam: "Senegal",
     homeFlag: "🇫🇷",
@@ -441,7 +441,7 @@ const groupMatches: Match[] = [
   {
     id: 24,
     phase: "Grupo D",
-    date: "2026-06-21T20:00:00",
+    date: "2026-06-21T20:00:00-05:00",
     homeTeam: "Uruguay",
     awayTeam: "Polonia",
     homeFlag: "🇺🇾",
@@ -458,7 +458,7 @@ const groupMatches: Match[] = [
   {
     id: 25,
     phase: "Grupo E",
-    date: "2026-06-13T18:00:00",
+    date: "2026-06-13T18:00:00-05:00",
     homeTeam: "Inglaterra",
     awayTeam: "Países Bajos",
     homeFlag: "🇬🇧",
@@ -473,7 +473,7 @@ const groupMatches: Match[] = [
   {
     id: 26,
     phase: "Grupo E",
-    date: "2026-06-13T21:00:00",
+    date: "2026-06-13T21:00:00-05:00",
     homeTeam: "Serbia",
     awayTeam: "Ghana",
     homeFlag: "🇷🇸",
@@ -488,7 +488,7 @@ const groupMatches: Match[] = [
   {
     id: 27,
     phase: "Grupo E",
-    date: "2026-06-17T18:00:00",
+    date: "2026-06-17T18:00:00-05:00",
     homeTeam: "Países Bajos",
     awayTeam: "Serbia",
     homeFlag: "🇳🇱",
@@ -503,7 +503,7 @@ const groupMatches: Match[] = [
   {
     id: 28,
     phase: "Grupo E",
-    date: "2026-06-17T21:00:00",
+    date: "2026-06-17T21:00:00-05:00",
     homeTeam: "Ghana",
     awayTeam: "Inglaterra",
     homeFlag: "🇬🇭",
@@ -518,7 +518,7 @@ const groupMatches: Match[] = [
   {
     id: 29,
     phase: "Grupo E",
-    date: "2026-06-21T20:00:00",
+    date: "2026-06-21T20:00:00-05:00",
     homeTeam: "Inglaterra",
     awayTeam: "Serbia",
     homeFlag: "🇬🇧",
@@ -533,7 +533,7 @@ const groupMatches: Match[] = [
   {
     id: 30,
     phase: "Grupo E",
-    date: "2026-06-21T20:00:00",
+    date: "2026-06-21T20:00:00-05:00",
     homeTeam: "Países Bajos",
     awayTeam: "Ghana",
     homeFlag: "🇳🇱",
@@ -550,7 +550,7 @@ const groupMatches: Match[] = [
   {
     id: 31,
     phase: "Grupo F",
-    date: "2026-06-14T17:00:00",
+    date: "2026-06-14T17:00:00-05:00",
     homeTeam: "Portugal",
     awayTeam: "México",
     homeFlag: "🇵🇹",
@@ -565,7 +565,7 @@ const groupMatches: Match[] = [
   {
     id: 32,
     phase: "Grupo F",
-    date: "2026-06-14T20:00:00",
+    date: "2026-06-14T20:00:00-05:00",
     homeTeam: "Turquía",
     awayTeam: "Camerún",
     homeFlag: "🇹🇷",
@@ -580,7 +580,7 @@ const groupMatches: Match[] = [
   {
     id: 33,
     phase: "Grupo F",
-    date: "2026-06-18T17:00:00",
+    date: "2026-06-18T17:00:00-05:00",
     homeTeam: "México",
     awayTeam: "Turquía",
     homeFlag: "🇲🇽",
@@ -595,7 +595,7 @@ const groupMatches: Match[] = [
   {
     id: 34,
     phase: "Grupo F",
-    date: "2026-06-18T20:00:00",
+    date: "2026-06-18T20:00:00-05:00",
     homeTeam: "Camerún",
     awayTeam: "Portugal",
     homeFlag: "🇨🇲",
@@ -610,7 +610,7 @@ const groupMatches: Match[] = [
   {
     id: 35,
     phase: "Grupo F",
-    date: "2026-06-22T20:00:00",
+    date: "2026-06-22T20:00:00-05:00",
     homeTeam: "Portugal",
     awayTeam: "Turquía",
     homeFlag: "🇵🇹",
@@ -625,7 +625,7 @@ const groupMatches: Match[] = [
   {
     id: 36,
     phase: "Grupo F",
-    date: "2026-06-22T20:00:00",
+    date: "2026-06-22T20:00:00-05:00",
     homeTeam: "México",
     awayTeam: "Camerún",
     homeFlag: "🇲🇽",
@@ -642,7 +642,7 @@ const groupMatches: Match[] = [
   {
     id: 37,
     phase: "Grupo G",
-    date: "2026-06-14T18:00:00",
+    date: "2026-06-14T18:00:00-05:00",
     homeTeam: "Canadá",
     awayTeam: "Croacia",
     homeFlag: "🇨🇦",
@@ -657,7 +657,7 @@ const groupMatches: Match[] = [
   {
     id: 38,
     phase: "Grupo G",
-    date: "2026-06-14T21:00:00",
+    date: "2026-06-14T21:00:00-05:00",
     homeTeam: "Chile",
     awayTeam: "Nigeria",
     homeFlag: "🇨🇱",
@@ -672,7 +672,7 @@ const groupMatches: Match[] = [
   {
     id: 39,
     phase: "Grupo G",
-    date: "2026-06-18T18:00:00",
+    date: "2026-06-18T18:00:00-05:00",
     homeTeam: "Croacia",
     awayTeam: "Chile",
     homeFlag: "🇭🇷",
@@ -687,7 +687,7 @@ const groupMatches: Match[] = [
   {
     id: 40,
     phase: "Grupo G",
-    date: "2026-06-18T21:00:00",
+    date: "2026-06-18T21:00:00-05:00",
     homeTeam: "Nigeria",
     awayTeam: "Canadá",
     homeFlag: "🇳🇬",
@@ -702,7 +702,7 @@ const groupMatches: Match[] = [
   {
     id: 41,
     phase: "Grupo G",
-    date: "2026-06-22T20:00:00",
+    date: "2026-06-22T20:00:00-05:00",
     homeTeam: "Canadá",
     awayTeam: "Chile",
     homeFlag: "🇨🇦",
@@ -717,7 +717,7 @@ const groupMatches: Match[] = [
   {
     id: 42,
     phase: "Grupo G",
-    date: "2026-06-22T20:00:00",
+    date: "2026-06-22T20:00:00-05:00",
     homeTeam: "Croacia",
     awayTeam: "Nigeria",
     homeFlag: "🇭🇷",
@@ -734,7 +734,7 @@ const groupMatches: Match[] = [
   {
     id: 43,
     phase: "Grupo H",
-    date: "2026-06-15T17:00:00",
+    date: "2026-06-15T17:00:00-05:00",
     homeTeam: "Italia",
     awayTeam: "Perú",
     homeFlag: "🇮🇹",
@@ -749,7 +749,7 @@ const groupMatches: Match[] = [
   {
     id: 44,
     phase: "Grupo H",
-    date: "2026-06-15T20:00:00",
+    date: "2026-06-15T20:00:00-05:00",
     homeTeam: "Dinamarca",
     awayTeam: "Irán",
     homeFlag: "🇩🇰",
@@ -764,7 +764,7 @@ const groupMatches: Match[] = [
   {
     id: 45,
     phase: "Grupo H",
-    date: "2026-06-19T17:00:00",
+    date: "2026-06-19T17:00:00-05:00",
     homeTeam: "Perú",
     awayTeam: "Dinamarca",
     homeFlag: "🇵🇪",
@@ -779,7 +779,7 @@ const groupMatches: Match[] = [
   {
     id: 46,
     phase: "Grupo H",
-    date: "2026-06-19T20:00:00",
+    date: "2026-06-19T20:00:00-05:00",
     homeTeam: "Irán",
     awayTeam: "Italia",
     homeFlag: "🇮🇷",
@@ -794,7 +794,7 @@ const groupMatches: Match[] = [
   {
     id: 47,
     phase: "Grupo H",
-    date: "2026-06-23T20:00:00",
+    date: "2026-06-23T20:00:00-05:00",
     homeTeam: "Italia",
     awayTeam: "Dinamarca",
     homeFlag: "🇮🇹",
@@ -809,7 +809,7 @@ const groupMatches: Match[] = [
   {
     id: 48,
     phase: "Grupo H",
-    date: "2026-06-23T20:00:00",
+    date: "2026-06-23T20:00:00-05:00",
     homeTeam: "Perú",
     awayTeam: "Irán",
     homeFlag: "🇵🇪",
@@ -826,7 +826,7 @@ const groupMatches: Match[] = [
   {
     id: 49,
     phase: "Grupo I",
-    date: "2026-06-15T18:00:00",
+    date: "2026-06-15T18:00:00-05:00",
     homeTeam: "Austria",
     awayTeam: "Australia",
     homeFlag: "🇦🇹",
@@ -841,7 +841,7 @@ const groupMatches: Match[] = [
   {
     id: 50,
     phase: "Grupo I",
-    date: "2026-06-15T21:00:00",
+    date: "2026-06-15T21:00:00-05:00",
     homeTeam: "Suiza",
     awayTeam: "Venezuela",
     homeFlag: "🇨🇭",
@@ -856,7 +856,7 @@ const groupMatches: Match[] = [
   {
     id: 51,
     phase: "Grupo I",
-    date: "2026-06-19T18:00:00",
+    date: "2026-06-19T18:00:00-05:00",
     homeTeam: "Australia",
     awayTeam: "Suiza",
     homeFlag: "🇦🇺",
@@ -871,7 +871,7 @@ const groupMatches: Match[] = [
   {
     id: 52,
     phase: "Grupo I",
-    date: "2026-06-19T21:00:00",
+    date: "2026-06-19T21:00:00-05:00",
     homeTeam: "Venezuela",
     awayTeam: "Austria",
     homeFlag: "🇻🇪",
@@ -886,7 +886,7 @@ const groupMatches: Match[] = [
   {
     id: 53,
     phase: "Grupo I",
-    date: "2026-06-23T20:00:00",
+    date: "2026-06-23T20:00:00-05:00",
     homeTeam: "Austria",
     awayTeam: "Suiza",
     homeFlag: "🇦🇹",
@@ -901,7 +901,7 @@ const groupMatches: Match[] = [
   {
     id: 54,
     phase: "Grupo I",
-    date: "2026-06-23T20:00:00",
+    date: "2026-06-23T20:00:00-05:00",
     homeTeam: "Australia",
     awayTeam: "Venezuela",
     homeFlag: "🇦🇺",
@@ -918,7 +918,7 @@ const groupMatches: Match[] = [
   {
     id: 55,
     phase: "Grupo J",
-    date: "2026-06-16T17:00:00",
+    date: "2026-06-16T17:00:00-05:00",
     homeTeam: "Corea del Sur",
     awayTeam: "Costa Rica",
     homeFlag: "🇰🇷",
@@ -933,7 +933,7 @@ const groupMatches: Match[] = [
   {
     id: 56,
     phase: "Grupo J",
-    date: "2026-06-16T20:00:00",
+    date: "2026-06-16T20:00:00-05:00",
     homeTeam: "Rumania",
     awayTeam: "Bolivia",
     homeFlag: "🇷🇴",
@@ -948,7 +948,7 @@ const groupMatches: Match[] = [
   {
     id: 57,
     phase: "Grupo J",
-    date: "2026-06-20T17:00:00",
+    date: "2026-06-20T17:00:00-05:00",
     homeTeam: "Costa Rica",
     awayTeam: "Rumania",
     homeFlag: "🇨🇷",
@@ -963,7 +963,7 @@ const groupMatches: Match[] = [
   {
     id: 58,
     phase: "Grupo J",
-    date: "2026-06-20T20:00:00",
+    date: "2026-06-20T20:00:00-05:00",
     homeTeam: "Bolivia",
     awayTeam: "Corea del Sur",
     homeFlag: "🇧🇴",
@@ -978,7 +978,7 @@ const groupMatches: Match[] = [
   {
     id: 59,
     phase: "Grupo J",
-    date: "2026-06-24T20:00:00",
+    date: "2026-06-24T20:00:00-05:00",
     homeTeam: "Corea del Sur",
     awayTeam: "Rumania",
     homeFlag: "🇰🇷",
@@ -993,7 +993,7 @@ const groupMatches: Match[] = [
   {
     id: 60,
     phase: "Grupo J",
-    date: "2026-06-24T20:00:00",
+    date: "2026-06-24T20:00:00-05:00",
     homeTeam: "Costa Rica",
     awayTeam: "Bolivia",
     homeFlag: "🇨🇷",
@@ -1010,7 +1010,7 @@ const groupMatches: Match[] = [
   {
     id: 61,
     phase: "Grupo K",
-    date: "2026-06-17T17:00:00",
+    date: "2026-06-17T17:00:00-05:00",
     homeTeam: "Rep. Checa",
     awayTeam: "Arabia Saudita",
     homeFlag: "🇨🇿",
@@ -1025,7 +1025,7 @@ const groupMatches: Match[] = [
   {
     id: 62,
     phase: "Grupo K",
-    date: "2026-06-17T20:00:00",
+    date: "2026-06-17T20:00:00-05:00",
     homeTeam: "Grecia",
     awayTeam: "Paraguay",
     homeFlag: "🇬🇷",
@@ -1040,7 +1040,7 @@ const groupMatches: Match[] = [
   {
     id: 63,
     phase: "Grupo K",
-    date: "2026-06-21T17:00:00",
+    date: "2026-06-21T17:00:00-05:00",
     homeTeam: "Arabia Saudita",
     awayTeam: "Grecia",
     homeFlag: "🇸🇦",
@@ -1055,7 +1055,7 @@ const groupMatches: Match[] = [
   {
     id: 64,
     phase: "Grupo K",
-    date: "2026-06-21T20:00:00",
+    date: "2026-06-21T20:00:00-05:00",
     homeTeam: "Paraguay",
     awayTeam: "Rep. Checa",
     homeFlag: "🇵🇾",
@@ -1070,7 +1070,7 @@ const groupMatches: Match[] = [
   {
     id: 65,
     phase: "Grupo K",
-    date: "2026-06-25T20:00:00",
+    date: "2026-06-25T20:00:00-05:00",
     homeTeam: "Rep. Checa",
     awayTeam: "Grecia",
     homeFlag: "🇨🇿",
@@ -1085,7 +1085,7 @@ const groupMatches: Match[] = [
   {
     id: 66,
     phase: "Grupo K",
-    date: "2026-06-25T20:00:00",
+    date: "2026-06-25T20:00:00-05:00",
     homeTeam: "Arabia Saudita",
     awayTeam: "Paraguay",
     homeFlag: "🇸🇦",
@@ -1102,7 +1102,7 @@ const groupMatches: Match[] = [
   {
     id: 67,
     phase: "Grupo L",
-    date: "2026-06-18T17:00:00",
+    date: "2026-06-18T17:00:00-05:00",
     homeTeam: "Egipto",
     awayTeam: "Costa de Marfil",
     homeFlag: "🇪🇬",
@@ -1117,7 +1117,7 @@ const groupMatches: Match[] = [
   {
     id: 68,
     phase: "Grupo L",
-    date: "2026-06-18T20:00:00",
+    date: "2026-06-18T20:00:00-05:00",
     homeTeam: "Eslovenia",
     awayTeam: "EAU",
     homeFlag: "🇸🇮",
@@ -1132,7 +1132,7 @@ const groupMatches: Match[] = [
   {
     id: 69,
     phase: "Grupo L",
-    date: "2026-06-22T17:00:00",
+    date: "2026-06-22T17:00:00-05:00",
     homeTeam: "Costa de Marfil",
     awayTeam: "Eslovenia",
     homeFlag: "🇨🇮",
@@ -1147,7 +1147,7 @@ const groupMatches: Match[] = [
   {
     id: 70,
     phase: "Grupo L",
-    date: "2026-06-22T20:00:00",
+    date: "2026-06-22T20:00:00-05:00",
     homeTeam: "EAU",
     awayTeam: "Egipto",
     homeFlag: "🇦🇪",
@@ -1162,7 +1162,7 @@ const groupMatches: Match[] = [
   {
     id: 71,
     phase: "Grupo L",
-    date: "2026-06-26T20:00:00",
+    date: "2026-06-26T20:00:00-05:00",
     homeTeam: "Egipto",
     awayTeam: "Eslovenia",
     homeFlag: "🇪🇬",
@@ -1177,7 +1177,7 @@ const groupMatches: Match[] = [
   {
     id: 72,
     phase: "Grupo L",
-    date: "2026-06-26T20:00:00",
+    date: "2026-06-26T20:00:00-05:00",
     homeTeam: "Costa de Marfil",
     awayTeam: "EAU",
     homeFlag: "🇨🇮",
@@ -1199,7 +1199,7 @@ const knockoutMatches: Match[] = [
   {
     id: 73,
     phase: "Octavos de Final",
-    date: "2026-06-29T20:00:00",
+    date: "2026-06-29T20:00:00-05:00",
     homeTeam: "1A",
     awayTeam: "2B",
     homeFlag: "🏳️",
@@ -1214,7 +1214,7 @@ const knockoutMatches: Match[] = [
   {
     id: 74,
     phase: "Octavos de Final",
-    date: "2026-06-29T23:00:00",
+    date: "2026-06-29T23:00:00-05:00",
     homeTeam: "1C",
     awayTeam: "2D",
     homeFlag: "🏳️",
@@ -1229,7 +1229,7 @@ const knockoutMatches: Match[] = [
   {
     id: 75,
     phase: "Octavos de Final",
-    date: "2026-06-30T20:00:00",
+    date: "2026-06-30T20:00:00-05:00",
     homeTeam: "1E",
     awayTeam: "2F",
     homeFlag: "🏳️",
@@ -1244,7 +1244,7 @@ const knockoutMatches: Match[] = [
   {
     id: 76,
     phase: "Octavos de Final",
-    date: "2026-06-30T23:00:00",
+    date: "2026-06-30T23:00:00-05:00",
     homeTeam: "1G",
     awayTeam: "2H",
     homeFlag: "🏳️",
@@ -1259,7 +1259,7 @@ const knockoutMatches: Match[] = [
   {
     id: 77,
     phase: "Octavos de Final",
-    date: "2026-07-01T20:00:00",
+    date: "2026-07-01T20:00:00-05:00",
     homeTeam: "1I",
     awayTeam: "2J",
     homeFlag: "🏳️",
@@ -1274,7 +1274,7 @@ const knockoutMatches: Match[] = [
   {
     id: 78,
     phase: "Octavos de Final",
-    date: "2026-07-01T23:00:00",
+    date: "2026-07-01T23:00:00-05:00",
     homeTeam: "1K",
     awayTeam: "2L",
     homeFlag: "🏳️",
@@ -1289,7 +1289,7 @@ const knockoutMatches: Match[] = [
   {
     id: 79,
     phase: "Octavos de Final",
-    date: "2026-07-02T20:00:00",
+    date: "2026-07-02T20:00:00-05:00",
     homeTeam: "1B",
     awayTeam: "2A",
     homeFlag: "🏳️",
@@ -1304,7 +1304,7 @@ const knockoutMatches: Match[] = [
   {
     id: 80,
     phase: "Octavos de Final",
-    date: "2026-07-02T23:00:00",
+    date: "2026-07-02T23:00:00-05:00",
     homeTeam: "1D",
     awayTeam: "2C",
     homeFlag: "🏳️",
@@ -1319,7 +1319,7 @@ const knockoutMatches: Match[] = [
   {
     id: 81,
     phase: "Octavos de Final",
-    date: "2026-07-03T20:00:00",
+    date: "2026-07-03T20:00:00-05:00",
     homeTeam: "1F",
     awayTeam: "2E",
     homeFlag: "🏳️",
@@ -1334,7 +1334,7 @@ const knockoutMatches: Match[] = [
   {
     id: 82,
     phase: "Octavos de Final",
-    date: "2026-07-03T23:00:00",
+    date: "2026-07-03T23:00:00-05:00",
     homeTeam: "1H",
     awayTeam: "2G",
     homeFlag: "🏳️",
@@ -1349,7 +1349,7 @@ const knockoutMatches: Match[] = [
   {
     id: 83,
     phase: "Octavos de Final",
-    date: "2026-07-04T20:00:00",
+    date: "2026-07-04T20:00:00-05:00",
     homeTeam: "1J",
     awayTeam: "2I",
     homeFlag: "🏳️",
@@ -1364,7 +1364,7 @@ const knockoutMatches: Match[] = [
   {
     id: 84,
     phase: "Octavos de Final",
-    date: "2026-07-04T23:00:00",
+    date: "2026-07-04T23:00:00-05:00",
     homeTeam: "1L",
     awayTeam: "2K",
     homeFlag: "🏳️",
@@ -1379,7 +1379,7 @@ const knockoutMatches: Match[] = [
   {
     id: 85,
     phase: "Octavos de Final",
-    date: "2026-07-05T20:00:00",
+    date: "2026-07-05T20:00:00-05:00",
     homeTeam: "3Mejor1",
     awayTeam: "3Mejor2",
     homeFlag: "🏳️",
@@ -1394,7 +1394,7 @@ const knockoutMatches: Match[] = [
   {
     id: 86,
     phase: "Octavos de Final",
-    date: "2026-07-05T23:00:00",
+    date: "2026-07-05T23:00:00-05:00",
     homeTeam: "3Mejor3",
     awayTeam: "3Mejor4",
     homeFlag: "🏳️",
@@ -1409,7 +1409,7 @@ const knockoutMatches: Match[] = [
   {
     id: 87,
     phase: "Octavos de Final",
-    date: "2026-07-06T20:00:00",
+    date: "2026-07-06T20:00:00-05:00",
     homeTeam: "3Mejor5",
     awayTeam: "3Mejor6",
     homeFlag: "🏳️",
@@ -1424,7 +1424,7 @@ const knockoutMatches: Match[] = [
   {
     id: 88,
     phase: "Octavos de Final",
-    date: "2026-07-06T23:00:00",
+    date: "2026-07-06T23:00:00-05:00",
     homeTeam: "3Mejor7",
     awayTeam: "3Mejor8",
     homeFlag: "🏳️",
@@ -1441,7 +1441,7 @@ const knockoutMatches: Match[] = [
   {
     id: 89,
     phase: "Cuartos de Final",
-    date: "2026-07-10T20:00:00",
+    date: "2026-07-10T20:00:00-05:00",
     homeTeam: "GQ1",
     awayTeam: "GQ2",
     homeFlag: "🏳️",
@@ -1456,7 +1456,7 @@ const knockoutMatches: Match[] = [
   {
     id: 90,
     phase: "Cuartos de Final",
-    date: "2026-07-10T23:00:00",
+    date: "2026-07-10T23:00:00-05:00",
     homeTeam: "GQ3",
     awayTeam: "GQ4",
     homeFlag: "🏳️",
@@ -1471,7 +1471,7 @@ const knockoutMatches: Match[] = [
   {
     id: 91,
     phase: "Cuartos de Final",
-    date: "2026-07-11T20:00:00",
+    date: "2026-07-11T20:00:00-05:00",
     homeTeam: "GQ5",
     awayTeam: "GQ6",
     homeFlag: "🏳️",
@@ -1486,7 +1486,7 @@ const knockoutMatches: Match[] = [
   {
     id: 92,
     phase: "Cuartos de Final",
-    date: "2026-07-11T23:00:00",
+    date: "2026-07-11T23:00:00-05:00",
     homeTeam: "GQ7",
     awayTeam: "GQ8",
     homeFlag: "🏳️",
@@ -1501,7 +1501,7 @@ const knockoutMatches: Match[] = [
   {
     id: 93,
     phase: "Cuartos de Final",
-    date: "2026-07-12T20:00:00",
+    date: "2026-07-12T20:00:00-05:00",
     homeTeam: "GQ9",
     awayTeam: "GQ10",
     homeFlag: "🏳️",
@@ -1516,7 +1516,7 @@ const knockoutMatches: Match[] = [
   {
     id: 94,
     phase: "Cuartos de Final",
-    date: "2026-07-12T23:00:00",
+    date: "2026-07-12T23:00:00-05:00",
     homeTeam: "GQ11",
     awayTeam: "GQ12",
     homeFlag: "🏳️",
@@ -1531,7 +1531,7 @@ const knockoutMatches: Match[] = [
   {
     id: 95,
     phase: "Cuartos de Final",
-    date: "2026-07-13T20:00:00",
+    date: "2026-07-13T20:00:00-05:00",
     homeTeam: "GQ13",
     awayTeam: "GQ14",
     homeFlag: "🏳️",
@@ -1546,7 +1546,7 @@ const knockoutMatches: Match[] = [
   {
     id: 96,
     phase: "Cuartos de Final",
-    date: "2026-07-13T23:00:00",
+    date: "2026-07-13T23:00:00-05:00",
     homeTeam: "GQ15",
     awayTeam: "GQ16",
     homeFlag: "🏳️",
@@ -1563,7 +1563,7 @@ const knockoutMatches: Match[] = [
   {
     id: 97,
     phase: "Semifinal",
-    date: "2026-07-14T20:00:00",
+    date: "2026-07-14T20:00:00-05:00",
     homeTeam: "SF1",
     awayTeam: "SF2",
     homeFlag: "🏳️",
@@ -1578,7 +1578,7 @@ const knockoutMatches: Match[] = [
   {
     id: 98,
     phase: "Semifinal",
-    date: "2026-07-14T23:00:00",
+    date: "2026-07-14T23:00:00-05:00",
     homeTeam: "SF3",
     awayTeam: "SF4",
     homeFlag: "🏳️",
@@ -1593,7 +1593,7 @@ const knockoutMatches: Match[] = [
   {
     id: 99,
     phase: "Semifinal",
-    date: "2026-07-15T20:00:00",
+    date: "2026-07-15T20:00:00-05:00",
     homeTeam: "SF5",
     awayTeam: "SF6",
     homeFlag: "🏳️",
@@ -1608,7 +1608,7 @@ const knockoutMatches: Match[] = [
   {
     id: 100,
     phase: "Semifinal",
-    date: "2026-07-15T23:00:00",
+    date: "2026-07-15T23:00:00-05:00",
     homeTeam: "SF7",
     awayTeam: "SF8",
     homeFlag: "🏳️",
@@ -1625,7 +1625,7 @@ const knockoutMatches: Match[] = [
   {
     id: 101,
     phase: "Tercer Lugar",
-    date: "2026-07-18T20:00:00",
+    date: "2026-07-18T20:00:00-05:00",
     homeTeam: "3er 1",
     awayTeam: "3er 2",
     homeFlag: "🏳️",
@@ -1642,7 +1642,7 @@ const knockoutMatches: Match[] = [
   {
     id: 102,
     phase: "Final",
-    date: "2026-07-19T18:00:00",
+    date: "2026-07-19T18:00:00-05:00",
     homeTeam: "Ganador SF1",
     awayTeam: "Ganador SF2",
     homeFlag: "🏳️",

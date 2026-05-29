@@ -11,7 +11,7 @@ type FilterType = "all" | "groups" | "knockout" | Phase
 
 function formatDate(iso: string) {
   const d = new Date(iso)
-  return d.toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" })
+  return d.toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long", timeZone: "America/Bogota" })
 }
 
 function groupByDate(matches: Match[]) {
