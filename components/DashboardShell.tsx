@@ -8,6 +8,7 @@ import { StatsCards } from "./dashboard/StatsCards"
 import { Leaderboard } from "./dashboard/Leaderboard"
 import { UpcomingMatches } from "./dashboard/UpcomingMatches"
 import { WorldCupCountdown } from "./dashboard/WorldCupCountdown"
+import { WinnersBanner } from "./dashboard/WinnersBanner"
 import { CalendarView } from "./calendar/CalendarView"
 import { GroupStandingsView } from "./calendar/GroupStandings"
 import { KnockoutBracket } from "./bracket/KnockoutBracket"
@@ -83,6 +84,7 @@ export function DashboardShell() {
               {activeView === "dashboard" && (
                 <div className="space-y-6 max-w-6xl mx-auto">
                   <WorldCupCountdown />
+                  <WinnersBanner allMatches={data.allMatches} />
                   <StatsCards allMatches={data.allMatches} />
                   <div className="grid grid-cols-1 xl:grid-cols-[1fr_380px] gap-6 items-start">
                     <UpcomingMatches allMatches={data.allMatches} />

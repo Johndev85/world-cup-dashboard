@@ -26,7 +26,7 @@ function getMatchPoints(match: Match, teamName: string): number {
   return 0
 }
 
-function getChampionRunnerUp(matches: Match[]): { champion: string | null; runnerUp: string | null } {
+export function getChampionRunnerUp(matches: Match[]): { champion: string | null; runnerUp: string | null } {
   const finalMatch = matches.find(
     (m) => m.phase === "Final" && m.status === "finished"
   )
