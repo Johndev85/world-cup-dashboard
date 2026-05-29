@@ -2,6 +2,12 @@
 
 Dashboard interactivo para la polla del Mundial FIFA 2026 con tabla de posiciones en tiempo real, datos de la API de openfootball y diseño con la paleta oficial FIFA.
 
+## Vistas
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Desktop View](/Desktop-view.png) | ![Mobile View](/mobile-view.png) |
+
 ## Stack
 
 - **Framework:** Next.js 16 (App Router)
@@ -27,13 +33,13 @@ Dashboard interactivo para la polla del Mundial FIFA 2026 con tabla de posicione
 
 ## Paleta FIFA 2026
 
-| Color | Uso |
-|-------|-----|
-| `#3CAC3B` (green) | Acentos, badges, primary |
-| `#2A398D` (blue) | Links, hover states |
-| `#E61D25` (red) | Peligro, eliminación |
+| Color                  | Uso                        |
+| ---------------------- | -------------------------- |
+| `#3CAC3B` (green)      | Acentos, badges, primary   |
+| `#2A398D` (blue)       | Links, hover states        |
+| `#E61D25` (red)        | Peligro, eliminación       |
 | `#D1D4D1` (light gray) | Bordes, fondos secundarios |
-| `#474A4A` (dark gray) | Texto secundario |
+| `#474A4A` (dark gray)  | Texto secundario           |
 
 ## API
 
