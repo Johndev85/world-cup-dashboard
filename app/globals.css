@@ -187,3 +187,70 @@
 ::-webkit-scrollbar-thumb:hover {
   background: oklch(0.72 0.17 140 / 0.6);
 }
+
+/* Countdown banner animations */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 15px rgba(60, 172, 59, 0.3), inset 0 0 15px rgba(60, 172, 59, 0.1); }
+  50% { box-shadow: 0 0 30px rgba(60, 172, 59, 0.5), inset 0 0 25px rgba(60, 172, 59, 0.15); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes border-dance {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-border-dance {
+  background: linear-gradient(90deg, #3CAC3B, #2A398D, #E61D25, #3CAC3B);
+  background-size: 300% 300%;
+  animation: border-dance 4s ease infinite;
+}
+
+/* Bouncing soccer ball */
+@keyframes bounce-ball {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  15% {
+    transform: translateY(-38px) rotate(60deg);
+  }
+  30% {
+    transform: translateY(0) rotate(120deg);
+  }
+  45% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+  60% {
+    transform: translateY(0) rotate(240deg);
+  }
+  75% {
+    transform: translateY(-8px) rotate(300deg);
+  }
+  90% {
+    transform: translateY(0) rotate(340deg);
+  }
+}
