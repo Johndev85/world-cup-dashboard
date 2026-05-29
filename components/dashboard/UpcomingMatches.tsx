@@ -12,12 +12,13 @@ function formatDate(iso: string) {
 
 function formatTime(iso: string) {
   const d = new Date(iso)
-  return d.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit", timeZone: "America/Bogota" })
+  return d.toLocaleTimeString("es-ES", { hour: "numeric", minute: "2-digit", hour12: true, timeZone: "America/Bogota" })
 }
 
 export function UpcomingMatches({ allMatches }: { allMatches: Match[] }) {
   const upcoming = allMatches
     .filter((m) => m.status === "pending" && m.phase.startsWith("Grupo"))
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     .slice(0, 8)
 
   return (

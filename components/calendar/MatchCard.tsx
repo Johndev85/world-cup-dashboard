@@ -12,7 +12,7 @@ interface MatchCardProps {
 
 function formatTime(iso: string) {
   const d = new Date(iso)
-  return d.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit", timeZone: "America/Bogota" })
+  return d.toLocaleTimeString("es-ES", { hour: "numeric", minute: "2-digit", hour12: true, timeZone: "America/Bogota" })
 }
 
 export function MatchCard({ match, compact = false }: MatchCardProps) {
