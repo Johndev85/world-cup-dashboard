@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { FifaTrophy } from "@/components/ui/fifa-trophy"
-import { SoccerBall } from "@/components/ui/soccer-ball"
 
 const WORLD_CUP_START = new Date("2026-06-11T13:00:00-06:00")
 
@@ -23,17 +22,28 @@ function TimeUnit({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center gap-1.5">
       <div
-        className="animate-pulse-glow rounded-lg w-12 h-12 min-[400px]:w-16 min-[400px]:h-16 sm:w-20 sm:h-20 flex items-center justify-center border border-green-500/30"
-        style={{ background: "linear-gradient(135deg, rgba(60,172,59,0.2) 0%, rgba(10,46,10,0.9) 100%)" }}
+        className="animate-pulse-glow rounded-lg w-11 h-11 min-[400px]:w-14 min-[400px]:h-14 sm:w-16 sm:h-16 flex items-center justify-center border border-green-500/30"
+        style={{ background: "linear-gradient(135deg, rgba(60,172,59,0.25) 0%, rgba(10,46,10,0.9) 100%)" }}
       >
-        <span className="text-xl min-[400px]:text-3xl sm:text-4xl font-black font-mono text-white tabular-nums drop-shadow-lg">
+        <span className="text-lg min-[400px]:text-2xl sm:text-3xl font-black font-mono text-white tabular-nums drop-shadow-lg">
           {String(value).padStart(2, "0")}
         </span>
       </div>
-      <span className="text-[9px] min-[400px]:text-[10px] sm:text-xs text-green-300/80 uppercase tracking-[0.2em] font-bold">
+      <span className="text-[8px] min-[400px]:text-[10px] sm:text-[11px] text-green-300/80 uppercase tracking-[0.2em] font-bold">
         {label}
       </span>
     </div>
+  )
+}
+
+function BallImage({ delay }: { delay?: string }) {
+  return (
+    <img
+      src="/icon-balon.png"
+      alt=""
+      className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0"
+      style={{ animation: `bounce-ball 2.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite${delay ? ` ${delay}` : ""}` }}
+    />
   )
 }
 
@@ -58,7 +68,7 @@ export function WorldCupCountdown() {
 
       {/* Main content */}
       <div className="relative rounded-2xl overflow-hidden border border-green-500/20">
-        {/* Animated background layers */}
+        {/* Background */}
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #051505 0%, #0a2e0a 25%, #0d1f0d 50%, #0a1a2e 75%, #051505 100%)" }} />
 
         {/* Floating orbs */}
@@ -72,53 +82,50 @@ export function WorldCupCountdown() {
           backgroundSize: "30px 30px"
         }} />
 
-        {/* Shimmer effect */}
+        {/* Shimmer */}
         <div className="absolute inset-0 animate-shimmer" />
 
-        <div className="relative flex flex-col items-center px-4 py-6 sm:px-8 sm:py-7 gap-4 sm:gap-5">
-          {/* Top: Trophy + Ball */}
-          <div className="flex items-center gap-3">
-            <SoccerBall
-              className="w-8 h-8 sm:w-10 sm:h-10"
-              style={{ animation: "bounce-ball 2.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite" }}
-            />
-            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center border border-green-500/30"
-              style={{ background: "linear-gradient(135deg, rgba(60,172,59,0.3) 0%, rgba(10,46,10,0.8) 100%)" }}>
-              <FifaTrophy className="w-8 h-10 sm:w-11 sm:h-13" />
+        {/* Content */}
+        <div className="relative px-5 py-5 sm:px-8 sm:py-6">
+          {/* Row 1: Trophy + Title + Balls */}
+          <div className="flex items-center justify-center gap-4 sm:gap-6 mb-4">
+            <BallImage />
+            <div className="flex flex-col items-center gap-1">
+              <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full flex items-center justify-center border border-green-500/30"
+                style={{ background: "linear-gradient(135deg, rgba(60,172,59,0.3) 0%, rgba(10,46,10,0.8) 100%)" }}>
+                <FifaTrophy className="w-7 h-9 sm:w-9 sm:h-11" />
+              </div>
             </div>
-            <SoccerBall
-              className="w-8 h-8 sm:w-10 sm:h-10"
-              style={{ animation: "bounce-ball 2.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite 0.3s" }}
-            />
+            <BallImage delay="0.3s" />
           </div>
 
-          {/* Title */}
-          <div className="text-center">
+          {/* Row 2: Title */}
+          <div className="text-center mb-3">
             <p className="text-xs sm:text-sm font-black text-green-300 uppercase tracking-[0.3em]">
               FIFA World Cup 2026
             </p>
-            <p className="text-[10px] sm:text-xs text-white/40 mt-1">
+            <p className="text-[10px] sm:text-[11px] text-white/40 mt-1">
               USA · Canada · Mexico · 11 Jun — 19 Jul
             </p>
           </div>
 
-          {/* "Empieza en" */}
-          <div className="flex items-center gap-3">
-            <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent to-green-500/50" />
+          {/* Row 3: Empieza en */}
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent to-green-500/50" />
             <span className="text-sm sm:text-base font-black text-green-400 uppercase tracking-[0.25em] animate-float">
               Empieza en
             </span>
-            <div className="h-px w-8 sm:w-12 bg-gradient-to-l from-transparent to-green-500/50" />
+            <div className="h-px w-10 sm:w-16 bg-gradient-to-l from-transparent to-green-500/50" />
           </div>
 
-          {/* Countdown */}
-          <div className="flex items-center gap-2 min-[400px]:gap-3 sm:gap-4">
+          {/* Row 4: Countdown */}
+          <div className="flex items-center justify-center gap-2 min-[400px]:gap-3 sm:gap-4">
             <TimeUnit value={time.days} label="Días" />
-            <span className="text-2xl sm:text-3xl font-black text-green-500/50 -mt-5 animate-pulse">:</span>
+            <span className="text-xl sm:text-2xl font-black text-green-500/50 -mt-5 animate-pulse">:</span>
             <TimeUnit value={time.hours} label="Horas" />
-            <span className="text-2xl sm:text-3xl font-black text-green-500/50 -mt-5 animate-pulse">:</span>
+            <span className="text-xl sm:text-2xl font-black text-green-500/50 -mt-5 animate-pulse">:</span>
             <TimeUnit value={time.minutes} label="Min" />
-            <span className="text-2xl sm:text-3xl font-black text-green-500/50 -mt-5 animate-pulse">:</span>
+            <span className="text-xl sm:text-2xl font-black text-green-500/50 -mt-5 animate-pulse">:</span>
             <TimeUnit value={time.seconds} label="Seg" />
           </div>
         </div>

@@ -2,6 +2,7 @@
 
 import type { Match } from "@/lib/wc2026-data"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 interface BracketMatchProps {
   homeTeam: string
@@ -87,7 +88,7 @@ export function KnockoutBracket({ allMatches }: { allMatches: Match[] }) {
     <div className="w-full overflow-x-auto pb-4">
       <div className="min-w-[1100px]">
         {/* Column labels */}
-        <div className="grid grid-cols-[1fr_1fr_1fr_auto_1fr_1fr] gap-3 mb-3 px-2">
+        <div className="grid grid-cols-[1fr_1fr_1fr_auto_1fr_1fr] gap-3 mb-3">
           {["Octavos (1-8)", "Cuartos (1-4)", "Semifinales (1-2)", "FINAL", "Semifinales (3-4)", "Cuartos (5-8)"].map((label) => (
             <div key={label} className="text-center">
               <span className={cn(
@@ -144,9 +145,7 @@ export function KnockoutBracket({ allMatches }: { allMatches: Match[] }) {
           {/* Final + 3rd */}
           <div className="flex flex-col items-center gap-4">
             <div className="flex flex-col items-center gap-1.5">
-              <div className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center">
-                <span className="text-lg">🏆</span>
-              </div>
+              <Image src="/world-cup-icon.png" alt="Final" width={80} height={80} className="!w-1/2 !h-auto" />
               <span className="text-[10px] font-bold text-primary uppercase tracking-widest">Final</span>
             </div>
 
