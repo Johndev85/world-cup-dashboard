@@ -31,8 +31,8 @@ export function DashboardShell() {
   const { data, loading, error, refresh } = useWorldCupData()
 
   const leaderboard = useMemo(
-    () => data ? computeLeaderboard(data.allMatches) : [],
-    [data]
+    () => (data ? computeLeaderboard(data.allMatches) : []),
+    [data],
   )
 
   return (
@@ -57,7 +57,9 @@ export function DashboardShell() {
             <div className="flex items-center justify-center h-full">
               <div className="flex flex-col items-center gap-3">
                 <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-                <span className="text-sm text-muted-foreground">Cargando datos del mundial...</span>
+                <span className="text-sm text-muted-foreground">
+                  Cargando datos del mundial...
+                </span>
               </div>
             </div>
           )}
@@ -66,7 +68,10 @@ export function DashboardShell() {
             <div className="flex items-center justify-center h-full">
               <div className="flex flex-col items-center gap-3 text-center">
                 <span className="text-sm text-accent">Error: {error}</span>
-                <button onClick={refresh} className="text-xs px-3 py-1.5 rounded bg-primary text-primary-foreground">
+                <button
+                  onClick={refresh}
+                  className="text-xs px-3 py-1.5 rounded bg-primary text-primary-foreground"
+                >
                   Reintentar
                 </button>
               </div>
@@ -107,9 +112,12 @@ export function DashboardShell() {
               {activeView === "bracket" && (
                 <div className="max-w-full">
                   <div className="mb-4">
-                    <h2 className="text-base font-semibold text-foreground/80">Cuadro de Eliminatorias</h2>
+                    <h2 className="text-base font-semibold text-foreground/80">
+                      Cuadro de Eliminatorias
+                    </h2>
                     <p className="text-xs text-muted-foreground">
-                      48 equipos · 32avos · 16avos · Octavos · Cuartos · Semis · Final
+                      48 equipos · 32avos · 16avos · Octavos · Cuartos · Semis ·
+                      Final
                     </p>
                   </div>
                   <KnockoutBracket allMatches={data.allMatches} />
@@ -130,9 +138,6 @@ export function DashboardShell() {
               >
                 johndev85
               </a>
-              <span>con</span>
-              <span>💙</span>
-              <span>&</span>
               <span>☕</span>
             </div>
           </footer>

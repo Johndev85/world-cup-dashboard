@@ -4,9 +4,9 @@ Dashboard interactivo para la polla del Mundial FIFA 2026 con tabla de posicione
 
 ## Vistas
 
-| Desktop | Mobile |
-|---------|--------|
-| ![Desktop View](/Desktop-view.png) | ![Mobile View](/mobile-view.png) |
+| Desktop                                   | Mobile                                  |
+| ----------------------------------------- | --------------------------------------- |
+| ![Desktop View](/public/Desktop-view.png) | ![Mobile View](/public/mobile-view.png) |
 
 ## Stack
 
