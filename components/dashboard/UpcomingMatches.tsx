@@ -46,7 +46,7 @@ export function UpcomingMatches({ allMatches }: { allMatches: Match[] }) {
               className="px-4 py-3 flex items-center gap-3 hover:bg-secondary/40 transition-colors"
             >
               {/* Date */}
-              <div className="text-center w-12 flex-shrink-0">
+              <div className="text-center w-16 flex-shrink-0 whitespace-nowrap">
                 <div className="text-xs font-bold text-green-700 dark:text-green-400">{formatDate(match.date)}</div>
                 <div className="text-xs text-muted-foreground">{formatTime(match.date)}</div>
               </div>
