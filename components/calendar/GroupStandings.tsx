@@ -1,8 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import type { GroupStanding } from "@/lib/wc2026-data"
+import type { GroupStanding, Match } from "@/lib/wc2026-data"
 import { cn } from "@/lib/utils"
+import { TeamProbabilityBadge } from "@/components/ui/team-probability-badge"
 
 const GROUP_ACCENT: Record<string, { border: string; header: string; badge: string }> = {
   A: { border: "border-l-blue-500",    header: "text-blue-500",    badge: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30" },
@@ -30,7 +31,7 @@ const STAT_COLS = [
   { key: "points", label: "Pts",title: "Puntos" },
 ]
 
-export function GroupStandingsView({ groupStandings }: { groupStandings: GroupStanding[] }) {
+export function GroupStandingsView({ groupStandings, allMatches }: { groupStandings: GroupStanding[]; allMatches: Match[] }) {
   const [selectedGroup, setSelectedGroup] = useState<string | null>(null)
 
   const displayed = selectedGroup
@@ -84,8 +85,8 @@ export function GroupStandingsView({ groupStandings }: { groupStandings: GroupSt
               )}
             >
               {/* Header row */}
-              <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted/30">
-                <span className={cn("text-sm font-bold tracking-widest font-mono", accent.header)}>
+              <div className="flex items-center justify-between px-2 sm:px-4 py-2 sm:py-3 border-b border-border bg-muted/30">
+                <span className={cn("text-xs sm:text-sm font-bold tracking-widest font-mono", accent.header)}>
                   GRUPO {g.group}
                 </span>
                 {/* Stat header labels */}
@@ -94,7 +95,7 @@ export function GroupStandingsView({ groupStandings }: { groupStandings: GroupSt
                     <span
                       key={col.key}
                       title={col.title}
-                      className="text-[10px] font-semibold text-muted-foreground w-6 sm:w-8 text-center uppercase tracking-wide"
+                      className="text-[8px] sm:text-[10px] font-semibold text-muted-foreground w-5 sm:w-8 text-center uppercase tracking-wide"
                     >
                       {col.label}
                     </span>
@@ -103,7 +104,7 @@ export function GroupStandingsView({ groupStandings }: { groupStandings: GroupSt
               </div>
 
               {/* Teams */}
-              <div className="divide-y divide-border/40 overflow-x-auto">
+              <div className="divide-y divide-border/40">
                 {g.teams.map((team, idx) => {
                   const isQualified = idx < 2
                   const statValues = [
@@ -116,27 +117,30 @@ export function GroupStandingsView({ groupStandings }: { groupStandings: GroupSt
                     <div
                       key={team.name}
                       className={cn(
-                        "flex items-center px-4 py-2.5 gap-3 group",
+                        "flex items-center px-2 sm:px-4 py-2 sm:py-2.5 gap-1.5 sm:gap-3 group",
                         isQualified ? "bg-primary/5 hover:bg-primary/10" : "hover:bg-muted/30",
                         "transition-colors"
                       )}
                     >
                       {/* Qualification indicator */}
                       <div className={cn(
-                        "w-1 h-6 rounded-full flex-shrink-0",
+                        "w-1 h-5 sm:h-6 rounded-full flex-shrink-0",
                         idx === 0 ? "bg-primary" : idx === 1 ? "bg-primary/40" : "bg-transparent"
                       )} />
 
                       {/* Position number */}
-                      <span className="text-xs font-bold text-muted-foreground w-4 text-center flex-shrink-0">
+                      <span className="text-[10px] sm:text-xs font-bold text-muted-foreground w-3 sm:w-4 text-center flex-shrink-0">
                         {idx + 1}
                       </span>
 
                       {/* Flag + name — flex-1 so it takes all remaining space */}
-                      <div className="flex items-center gap-2 flex-1 min-w-0">
-                        <span className="text-base leading-none flex-shrink-0">{team.flag}</span>
-                        <span className="text-sm font-medium text-foreground whitespace-nowrap">
+                      <div className="flex items-center gap-1 sm:gap-2 flex-1 min-w-0">
+                        <span className="text-sm sm:text-base leading-none flex-shrink-0">{team.flag}</span>
+                        <span className="text-xs sm:text-sm font-medium text-foreground min-w-0 flex-1 truncate">
                           {team.name}
+                        </span>
+                        <span className="hidden sm:inline-flex flex-shrink-0">
+                          <TeamProbabilityBadge teamName={team.name} allMatches={allMatches} compact />
                         </span>
                       </div>
 
@@ -146,7 +150,7 @@ export function GroupStandingsView({ groupStandings }: { groupStandings: GroupSt
                           <span
                             key={i}
                             className={cn(
-                              "w-6 sm:w-8 text-center text-xs font-mono flex-shrink-0",
+                              "w-5 sm:w-8 text-center text-[10px] sm:text-xs font-mono flex-shrink-0",
                               i === 7
                                 ? "font-bold text-foreground"
                                 : i < 4
@@ -164,10 +168,10 @@ export function GroupStandingsView({ groupStandings }: { groupStandings: GroupSt
               </div>
 
               {/* Footer legend */}
-              <div className="px-4 py-2 border-t border-border/40 bg-muted/20 flex items-center gap-4">
+              <div className="px-2 sm:px-4 py-2 border-t border-border/40 bg-muted/20 flex items-center gap-4">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-primary" />
-                  <span className="text-[10px] text-muted-foreground font-medium">Clasifican a octavos</span>
+                  <span className="text-[9px] sm:text-[10px] text-muted-foreground font-medium">Clasifican a octavos</span>
                 </div>
               </div>
             </div>

@@ -1,8 +1,9 @@
 "use client"
 
-import { participants, PRIZES, type Participant } from "@/lib/wc2026-data"
+import { participants, PRIZES, type Participant, type Match } from "@/lib/wc2026-data"
 import { Trophy, Medal, Star } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { TeamProbabilityBadge } from "@/components/ui/team-probability-badge"
 
 const AVATAR_COLORS = [
   "bg-blue-500/20 text-blue-700 dark:text-blue-300 border-blue-500/30",
@@ -27,7 +28,7 @@ function formatCOP(n: number) {
   }).format(n)
 }
 
-function ParticipantCard({ p, index }: { p: Participant; index: number }) {
+function ParticipantCard({ p, index, allMatches }: { p: Participant; index: number; allMatches: Match[] }) {
   const colorClass = AVATAR_COLORS[index % AVATAR_COLORS.length]
 
   return (
@@ -61,7 +62,10 @@ function ParticipantCard({ p, index }: { p: Participant; index: number }) {
           >
             <span className="text-lg leading-none">{team.flag}</span>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-foreground truncate">{team.name}</p>
+              <div className="flex items-center gap-2">
+                <p className="text-sm font-medium text-foreground truncate">{team.name}</p>
+                <TeamProbabilityBadge teamName={team.name} allMatches={allMatches} compact />
+              </div>
               <p className="text-xs text-muted-foreground">Grupo {team.group}</p>
             </div>
             {ti === 0 ? (
@@ -80,7 +84,7 @@ function ParticipantCard({ p, index }: { p: Participant; index: number }) {
   )
 }
 
-export function PollaView() {
+export function PollaView({ allMatches }: { allMatches: Match[] }) {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Prize banner */}
@@ -132,7 +136,7 @@ export function PollaView() {
       {/* Grid of participant cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {participants.map((p, idx) => (
-          <ParticipantCard key={p.id} p={p} index={idx} />
+          <ParticipantCard key={p.id} p={p} index={idx} allMatches={allMatches} />
         ))}
       </div>
 

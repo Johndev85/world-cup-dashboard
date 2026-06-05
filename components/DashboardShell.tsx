@@ -9,6 +9,7 @@ import { Leaderboard } from "./dashboard/Leaderboard"
 import { UpcomingMatches } from "./dashboard/UpcomingMatches"
 import { WorldCupCountdown } from "./dashboard/WorldCupCountdown"
 import { WinnersBanner } from "./dashboard/WinnersBanner"
+import { TopContenders } from "./dashboard/TopContenders"
 import { CalendarView } from "./calendar/CalendarView"
 import { GroupStandingsView } from "./calendar/GroupStandings"
 import { KnockoutBracket } from "./bracket/KnockoutBracket"
@@ -86,16 +87,17 @@ export function DashboardShell() {
                   <WorldCupCountdown />
                   <WinnersBanner allMatches={data.allMatches} />
                   <StatsCards allMatches={data.allMatches} />
+                  <TopContenders allMatches={data.allMatches} />
                   <div className="grid grid-cols-1 xl:grid-cols-[1fr_380px] gap-6 items-start">
                     <UpcomingMatches allMatches={data.allMatches} />
-                    <Leaderboard entries={leaderboard} />
+                    <Leaderboard entries={leaderboard} allMatches={data.allMatches} />
                   </div>
                 </div>
               )}
 
               {activeView === "polla" && (
                 <div className="max-w-7xl mx-auto">
-                  <PollaView />
+                  <PollaView allMatches={data.allMatches} />
                 </div>
               )}
 
@@ -107,7 +109,7 @@ export function DashboardShell() {
 
               {activeView === "standings" && (
                 <div className="max-w-7xl mx-auto">
-                  <GroupStandingsView groupStandings={data.groupStandings} />
+                  <GroupStandingsView groupStandings={data.groupStandings} allMatches={data.allMatches} />
                 </div>
               )}
 
