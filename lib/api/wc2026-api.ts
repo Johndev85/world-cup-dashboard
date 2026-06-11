@@ -1,6 +1,7 @@
 import type { Match, GroupStanding, Phase } from "../wc2026-data"
 import { getTeamInfo } from "./team-mappings"
 import { getCountryByGround, getCityFromGround, getVenueFromGround } from "./venue-mappings"
+import { fetchFallbackScores } from "./wc2026-fallback"
 
 const API_URL = "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
 
@@ -172,10 +173,7 @@ let cache: WorldCupData | null = null
 let lastFetch = 0
 const CACHE_TTL = 5 * 60 * 1000
 
-export async function fetchWorldCupData(): Promise<WorldCupData> {
-  const now = Date.now()
-  if (cache && now - lastFetch < CACHE_TTL) return cache
-
+async function fetchPrimaryAPI(): Promise<WorldCupData> {
   const res = await fetch(API_URL)
   if (!res.ok) throw new Error(`Failed to fetch World Cup data: ${res.status}`)
 
@@ -183,7 +181,44 @@ export async function fetchWorldCupData(): Promise<WorldCupData> {
   const allMatches = data.matches.map((m, i) => apiMatchToMatch(m, i + 1))
   const groupStandings = computeGroupStandings(allMatches)
 
-  cache = { allMatches, groupStandings }
+  return { allMatches, groupStandings }
+}
+
+export async function fetchWorldCupData(): Promise<WorldCupData> {
+  const now = Date.now()
+  if (cache && now - lastFetch < CACHE_TTL) return cache
+
+  const [primaryResult, fallbackScores] = await Promise.allSettled([
+    fetchPrimaryAPI(),
+    fetchFallbackScores(),
+  ])
+
+  const primary = primaryResult.status === "fulfilled" ? primaryResult.value : null
+  const scores = fallbackScores.status === "fulfilled" ? fallbackScores.value : []
+
+  if (!primary) throw new Error("Primary API failed")
+
+  if (scores.length === 0) {
+    cache = primary
+    lastFetch = now
+    return cache
+  }
+
+  const mergedMatches = primary.allMatches.map((match) => {
+    if (match.status !== "pending") return match
+    const update = scores.find((s) => s.id === match.id)
+    if (!update) return match
+    return {
+      ...match,
+      homeScore: update.homeScore,
+      awayScore: update.awayScore,
+      status: "finished" as const,
+    }
+  })
+
+  const groupStandings = computeGroupStandings(mergedMatches)
+
+  cache = { allMatches: mergedMatches, groupStandings }
   lastFetch = now
   return cache
 }

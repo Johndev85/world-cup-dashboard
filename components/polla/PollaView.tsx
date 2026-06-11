@@ -1,6 +1,8 @@
 "use client"
 
+import { useMemo } from "react"
 import { participants, PRIZES, type Participant, type Match } from "@/lib/wc2026-data"
+import { computeLeaderboard } from "@/lib/api/leaderboard"
 import { Trophy, Medal, Star } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { TeamProbabilityBadge } from "@/components/ui/team-probability-badge"
@@ -85,6 +87,16 @@ function ParticipantCard({ p, index, allMatches }: { p: Participant; index: numb
 }
 
 export function PollaView({ allMatches }: { allMatches: Match[] }) {
+  const leaderboard = useMemo(() => computeLeaderboard(allMatches), [allMatches])
+
+  const sortedParticipants = useMemo(() => {
+    return [...participants]
+      .map((p) => {
+        const entry = leaderboard.find((e) => e.id === p.id)
+        return { ...p, points: entry?.points ?? 0 }
+      })
+      .sort((a, b) => b.points - a.points)
+  }, [leaderboard])
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Prize banner */}
@@ -128,14 +140,14 @@ export function PollaView({ allMatches }: { allMatches: Match[] }) {
       <div className="flex items-center gap-3">
         <Star className="w-4 h-4 text-primary flex-shrink-0" />
         <h2 className="text-sm font-semibold uppercase tracking-widest text-foreground/70">
-          {participants.length} Participantes — Equipos Asignados
+          {sortedParticipants.length} Participantes — Equipos Asignados
         </h2>
         <div className="flex-1 border-t border-border/50" />
       </div>
 
       {/* Grid of participant cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {participants.map((p, idx) => (
+        {sortedParticipants.map((p, idx) => (
           <ParticipantCard key={p.id} p={p} index={idx} allMatches={allMatches} />
         ))}
       </div>

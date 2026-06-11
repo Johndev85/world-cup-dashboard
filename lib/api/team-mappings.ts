@@ -69,3 +69,13 @@ export const TEAM_MAP: Record<string, TeamInfo> = {
 export function getTeamInfo(apiName: string): TeamInfo {
   return TEAM_MAP[apiName] ?? { name: apiName, flag: "🏳️", group: "?" }
 }
+
+const FALLBACK_TEAM_MAP: Record<string, string> = {
+  "United States":                        "USA",
+  "Bosnia and Herzegovina":               "Bosnia & Herzegovina",
+  "Democratic Republic of the Congo":     "DR Congo",
+}
+
+export function resolveFallbackName(fallbackName: string): string {
+  return FALLBACK_TEAM_MAP[fallbackName] ?? fallbackName
+}
