@@ -4,6 +4,7 @@ import type { Match } from "@/lib/wc2026-data"
 import { PHASE_COLORS } from "@/lib/wc2026-data"
 import { Clock, CalendarX } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useState, useEffect } from "react"
 
 function formatDate(iso: string) {
   const d = new Date(iso)
@@ -15,9 +16,28 @@ function formatTime(iso: string) {
   return d.toLocaleTimeString("es-ES", { hour: "numeric", minute: "2-digit", hour12: true, timeZone: "America/Bogota" })
 }
 
+function isMatchLive(matchDate: string): boolean {
+  const start = new Date(matchDate).getTime()
+  const end = start + 120 * 60 * 1000 // 120 minutos
+  const now = Date.now()
+  return now >= start && now <= end
+}
+
 export function UpcomingMatches({ allMatches }: { allMatches: Match[] }) {
+  const [now, setNow] = useState(Date.now())
+
+  useEffect(() => {
+    const interval = setInterval(() => setNow(Date.now()), 30000)
+    return () => clearInterval(interval)
+  }, [])
+
   const upcoming = allMatches
-    .filter((m) => m.status === "pending" && m.phase.startsWith("Grupo"))
+    .filter((m) => {
+      const isGroup = m.phase.startsWith("Grupo")
+      const isPending = m.status === "pending"
+      const isLiveNow = isMatchLive(m.date)
+      return isGroup && (isPending || isLiveNow)
+    })
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     .slice(0, 8)
 
@@ -60,17 +80,24 @@ export function UpcomingMatches({ allMatches }: { allMatches: Match[] }) {
               </span>
 
               {/* Match */}
-              <div className="flex items-center gap-2 flex-1 min-w-0">
+              <div className="flex items-center gap-2 flex-1 min-w-0 flex-wrap">
                 <span className="text-sm">{match.homeFlag}</span>
-                <span className="text-sm font-medium text-foreground truncate">
+                <span className="text-sm font-medium text-foreground sm:truncate">
                   {match.homeTeam}
                 </span>
                 <span className="text-xs text-muted-foreground mx-1">vs</span>
-                <span className="text-sm font-medium text-foreground truncate">
+                <span className="text-sm font-medium text-foreground sm:truncate">
                   {match.awayTeam}
                 </span>
                 <span className="text-sm">{match.awayFlag}</span>
               </div>
+
+              {/* Live badge */}
+              {isMatchLive(match.date) && (
+                <span className="text-[0.65rem] font-semibold px-2 py-px rounded-full bg-red-500 text-white shrink-0 ml-auto sm:ml-1.5">
+                  Jugando
+                </span>
+              )}
 
               {/* Venue */}
               <div className="text-xs text-muted-foreground text-right hidden lg:block max-w-[120px] truncate">
