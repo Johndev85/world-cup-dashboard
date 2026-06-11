@@ -3,7 +3,7 @@
 import type { LeaderboardEntry } from "@/lib/api/leaderboard"
 import type { Match } from "@/lib/wc2026-data"
 import { Trophy } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, abbreviateTeamName } from "@/lib/utils"
 import { TeamProbabilityBadge } from "@/components/ui/team-probability-badge"
 
 function formatCOP(n: number) {
@@ -103,11 +103,21 @@ export function Leaderboard({ entries, allMatches }: { entries: LeaderboardEntry
                   </div>
                   <div className="flex items-center gap-1 mt-0.5">
                     <span className="text-xs flex-shrink-0">{entry.teams[0].flag}</span>
-                    <span className="text-xs text-muted-foreground min-w-0 flex-1 truncate">{entry.teams[0].name}</span>
+                    <span className="text-xs text-muted-foreground min-w-0 flex-1 sm:hidden">
+                      {abbreviateTeamName(entry.teams[0].name)}
+                    </span>
+                    <span className="text-xs text-muted-foreground min-w-0 flex-1 hidden sm:inline truncate">
+                      {entry.teams[0].name}
+                    </span>
                     <TeamProbabilityBadge teamName={entry.teams[0].name} allMatches={allMatches} compact />
                     <span className="text-xs text-muted-foreground/40 flex-shrink-0">·</span>
                     <span className="text-xs flex-shrink-0">{entry.teams[1].flag}</span>
-                    <span className="text-xs text-muted-foreground min-w-0 flex-1 truncate">{entry.teams[1].name}</span>
+                    <span className="text-xs text-muted-foreground min-w-0 flex-1 sm:hidden">
+                      {abbreviateTeamName(entry.teams[1].name)}
+                    </span>
+                    <span className="text-xs text-muted-foreground min-w-0 flex-1 hidden sm:inline truncate">
+                      {entry.teams[1].name}
+                    </span>
                     <TeamProbabilityBadge teamName={entry.teams[1].name} allMatches={allMatches} compact />
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 "use client"
 
 import { useMemo } from "react"
+import { abbreviateTeamName } from "@/lib/utils"
 import type { Match } from "@/lib/wc2026-data"
 import { participants, PRIZES } from "@/lib/wc2026-data"
 import { getChampionRunnerUp } from "@/lib/api/leaderboard"
@@ -65,7 +66,12 @@ function ChampionCard({ winner }: { winner: WinnerInfo }) {
           {/* Team */}
           <div className="flex items-center gap-2 sm:gap-2.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-white/5 border border-white/10">
             <span className="text-lg sm:text-xl">{winner.teamFlag}</span>
-            <span className="text-[11px] sm:text-xs text-white/70 font-semibold">{winner.teamName}</span>
+            <span className="text-[11px] sm:text-xs text-white/70 font-semibold sm:hidden">
+              {abbreviateTeamName(winner.teamName)}
+            </span>
+            <span className="text-[11px] sm:text-xs text-white/70 font-semibold hidden sm:inline">
+              {winner.teamName}
+            </span>
           </div>
         </div>
       </div>
@@ -132,7 +138,12 @@ function RunnerUpCard({ winner }: { winner: WinnerInfo }) {
           {/* Team */}
           <div className="flex items-center gap-2 sm:gap-2.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-white/5 border border-white/10">
             <span className="text-base sm:text-lg">{winner.teamFlag}</span>
-            <span className="text-[10px] sm:text-[11px] text-white/60 font-semibold">{winner.teamName}</span>
+            <span className="text-[10px] sm:text-[11px] text-white/60 font-semibold sm:hidden">
+              {abbreviateTeamName(winner.teamName)}
+            </span>
+            <span className="text-[10px] sm:text-[11px] text-white/60 font-semibold hidden sm:inline">
+              {winner.teamName}
+            </span>
           </div>
         </div>
       </div>

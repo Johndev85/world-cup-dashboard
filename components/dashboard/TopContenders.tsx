@@ -9,6 +9,7 @@ import {
   getProbabilityColor,
 } from "@/lib/api/team-probabilities"
 import { TrendingUp } from "lucide-react"
+import { abbreviateTeamName } from "@/lib/utils"
 
 const PHASE_LABELS: Record<string, string> = {
   groups: "Fase de Grupos",
@@ -76,7 +77,10 @@ export function TopContenders({ allMatches }: { allMatches: Match[] }) {
             {/* Flag + Name */}
             <div className="flex items-center gap-2 flex-1 min-w-0">
               <span className="text-lg flex-shrink-0">{d.team.flag}</span>
-              <span className="text-sm font-medium text-foreground truncate">
+              <span className="text-sm font-medium text-foreground sm:hidden">
+                {abbreviateTeamName(d.team.name)}
+              </span>
+              <span className="text-sm font-medium text-foreground hidden sm:inline truncate">
                 {d.team.name}
               </span>
             </div>

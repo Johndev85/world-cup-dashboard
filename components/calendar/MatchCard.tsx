@@ -3,7 +3,7 @@
 import type { Match } from "@/lib/wc2026-data"
 import { PHASE_COLORS } from "@/lib/wc2026-data"
 import { MapPin } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, abbreviateTeamName } from "@/lib/utils"
 
 interface MatchCardProps {
   match: Match
@@ -63,7 +63,13 @@ export function MatchCard({ match, compact = false }: MatchCardProps) {
         <div className="flex-1 flex items-center gap-2 min-w-0">
           <span className="text-lg leading-none flex-shrink-0">{match.homeFlag}</span>
           <span className={cn(
-            "text-sm font-semibold truncate",
+            "text-sm font-semibold sm:hidden",
+            isLive || isFinished ? "text-foreground" : "text-foreground"
+          )}>
+            {abbreviateTeamName(match.homeTeam)}
+          </span>
+          <span className={cn(
+            "text-sm font-semibold hidden sm:inline truncate",
             isLive || isFinished ? "text-foreground" : "text-foreground"
           )}>
             {match.homeTeam}
@@ -96,7 +102,13 @@ export function MatchCard({ match, compact = false }: MatchCardProps) {
         {/* Away */}
         <div className="flex-1 flex items-center justify-end gap-2 min-w-0">
           <span className={cn(
-            "text-sm font-semibold truncate text-right",
+            "text-sm font-semibold sm:hidden text-right",
+            isLive || isFinished ? "text-foreground" : "text-foreground"
+          )}>
+            {abbreviateTeamName(match.awayTeam)}
+          </span>
+          <span className={cn(
+            "text-sm font-semibold hidden sm:inline truncate text-right",
             isLive || isFinished ? "text-foreground" : "text-foreground"
           )}>
             {match.awayTeam}

@@ -1,7 +1,7 @@
 "use client"
 
 import type { Match } from "@/lib/wc2026-data"
-import { cn } from "@/lib/utils"
+import { cn, abbreviateTeamName } from "@/lib/utils"
 import Image from "next/image"
 
 interface BracketMatchProps {
@@ -35,7 +35,13 @@ function BracketMatch({
         )}>
           <span className="text-xs flex-shrink-0">{isKnown ? homeFlag : "🏳️"}</span>
           <span className={cn(
-            "text-[11px] font-medium flex-1 truncate",
+            "text-[11px] font-medium flex-1 sm:hidden",
+            isKnown ? "text-foreground" : "text-muted-foreground"
+          )}>
+            {isKnown ? abbreviateTeamName(homeTeam) : "Por definir"}
+          </span>
+          <span className={cn(
+            "text-[11px] font-medium flex-1 hidden sm:inline truncate",
             isKnown ? "text-foreground" : "text-muted-foreground"
           )}>
             {isKnown ? homeTeam : "Por definir"}
@@ -57,7 +63,13 @@ function BracketMatch({
         )}>
           <span className="text-xs flex-shrink-0">{isKnown ? awayFlag : "🏳️"}</span>
           <span className={cn(
-            "text-[11px] font-medium flex-1 truncate",
+            "text-[11px] font-medium flex-1 sm:hidden",
+            isKnown ? "text-foreground" : "text-muted-foreground"
+          )}>
+            {isKnown ? abbreviateTeamName(awayTeam) : "Por definir"}
+          </span>
+          <span className={cn(
+            "text-[11px] font-medium flex-1 hidden sm:inline truncate",
             isKnown ? "text-foreground" : "text-muted-foreground"
           )}>
             {isKnown ? awayTeam : "Por definir"}

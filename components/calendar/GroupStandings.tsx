@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import type { GroupStanding, Match } from "@/lib/wc2026-data"
-import { cn } from "@/lib/utils"
+import { cn, abbreviateTeamName } from "@/lib/utils"
 import { TeamProbabilityBadge } from "@/components/ui/team-probability-badge"
 
 const GROUP_ACCENT: Record<string, { border: string; header: string; badge: string }> = {
@@ -136,7 +136,10 @@ export function GroupStandingsView({ groupStandings, allMatches }: { groupStandi
                       {/* Flag + name — flex-1 so it takes all remaining space */}
                       <div className="flex items-center gap-1 sm:gap-2 flex-1 min-w-0">
                         <span className="text-sm sm:text-base leading-none flex-shrink-0">{team.flag}</span>
-                        <span className="text-xs sm:text-sm font-medium text-foreground min-w-0 flex-1 truncate">
+                        <span className="text-xs sm:text-sm font-medium text-foreground min-w-0 flex-1 sm:hidden">
+                          {abbreviateTeamName(team.name)}
+                        </span>
+                        <span className="text-xs sm:text-sm font-medium text-foreground min-w-0 flex-1 hidden sm:inline truncate">
                           {team.name}
                         </span>
                         <span className="hidden sm:inline-flex flex-shrink-0">

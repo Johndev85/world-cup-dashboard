@@ -4,7 +4,7 @@ import { useMemo } from "react"
 import { participants, PRIZES, type Participant, type Match } from "@/lib/wc2026-data"
 import { computeLeaderboard } from "@/lib/api/leaderboard"
 import { Trophy, Medal, Star } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, abbreviateTeamName } from "@/lib/utils"
 import { TeamProbabilityBadge } from "@/components/ui/team-probability-badge"
 
 const AVATAR_COLORS = [
@@ -65,7 +65,12 @@ function ParticipantCard({ p, index, allMatches }: { p: Participant; index: numb
             <span className="text-lg leading-none">{team.flag}</span>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <p className="text-sm font-medium text-foreground truncate">{team.name}</p>
+                <p className="text-sm font-medium text-foreground sm:hidden">
+                  {abbreviateTeamName(team.name)}
+                </p>
+                <p className="text-sm font-medium text-foreground hidden sm:inline truncate">
+                  {team.name}
+                </p>
                 <TeamProbabilityBadge teamName={team.name} allMatches={allMatches} compact />
               </div>
               <p className="text-xs text-muted-foreground">Grupo {team.group}</p>
