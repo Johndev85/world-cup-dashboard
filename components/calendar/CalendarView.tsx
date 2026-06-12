@@ -10,8 +10,9 @@ import { ChevronDown, ChevronRight, Filter } from "lucide-react"
 type FilterType = "all" | "groups" | "knockout" | Phase
 
 function formatDate(iso: string) {
-  const d = new Date(iso)
-  return d.toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long", timeZone: "America/Bogota" })
+  const [y, mo, d] = iso.split("-").map(Number)
+  const date = new Date(Date.UTC(y, mo - 1, d, 12, 0, 0))
+  return date.toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long", timeZone: "America/Bogota" })
 }
 
 function groupByDate(matches: Match[]) {
