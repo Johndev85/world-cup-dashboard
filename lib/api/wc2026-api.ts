@@ -206,7 +206,11 @@ export async function fetchWorldCupData(): Promise<WorldCupData> {
 
   const mergedMatches = primary.allMatches.map((match) => {
     if (match.status !== "pending") return match
-    const update = scores.find((s) => s.id === match.id)
+    const update = scores.find(
+      (s) =>
+        (s.homeTeam === match.homeTeam && s.awayTeam === match.awayTeam) ||
+        (s.homeTeam === match.awayTeam && s.awayTeam === match.homeTeam)
+    )
     if (!update) return match
     return {
       ...match,

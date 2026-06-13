@@ -1,3 +1,5 @@
+import { resolveFallbackName } from "./team-mappings"
+
 const FALLBACK_BASE = "/api/scores"
 
 interface FallbackGame {
@@ -5,6 +7,8 @@ interface FallbackGame {
   home_score: string
   away_score: string
   finished: string
+  home_team_name_en: string
+  away_team_name_en: string
 }
 
 interface FallbackGamesResponse {
@@ -15,6 +19,8 @@ export interface MatchScoreUpdate {
   id: number
   homeScore: number
   awayScore: number
+  homeTeam: string
+  awayTeam: string
 }
 
 let cache: MatchScoreUpdate[] | null = null
@@ -37,6 +43,8 @@ export async function fetchFallbackScores(): Promise<MatchScoreUpdate[]> {
         id: parseInt(g.id),
         homeScore: parseInt(g.home_score) || 0,
         awayScore: parseInt(g.away_score) || 0,
+        homeTeam: resolveFallbackName(g.home_team_name_en),
+        awayTeam: resolveFallbackName(g.away_team_name_en),
       }))
 
     lastFetch = now
