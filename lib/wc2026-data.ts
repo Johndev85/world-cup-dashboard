@@ -23,6 +23,13 @@ export type Phase =
 
 export type MatchStatus = "pending" | "live" | "finished"
 
+export interface GoalScorer {
+  name: string
+  team: string
+  minute: string
+  penalty?: boolean
+}
+
 export interface Match {
   id: number
   phase: Phase
@@ -39,6 +46,7 @@ export interface Match {
   city: string
   country: "USA" | "CAN" | "MEX"
   status: MatchStatus
+  goals?: GoalScorer[]
 }
 
 export interface PollaTeam {

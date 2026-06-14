@@ -1,9 +1,16 @@
-import type { Match, GroupStanding, Phase } from "../wc2026-data"
+import type { Match, GroupStanding, Phase, GoalScorer } from "../wc2026-data"
 import { getTeamInfo } from "./team-mappings"
 import { getCountryByGround, getCityFromGround, getVenueFromGround } from "./venue-mappings"
 import { fetchFallbackScores } from "./wc2026-fallback"
 
 const API_URL = "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+
+interface ApiGoal {
+  name: string
+  minute: string
+  penalty?: boolean
+  owngoal?: boolean
+}
 
 interface ApiMatch {
   round: string
@@ -20,6 +27,8 @@ interface ApiMatch {
     et?: [number, number]
     p?: [number, number]
   }
+  goals1?: ApiGoal[]
+  goals2?: ApiGoal[]
 }
 
 interface ApiResponse {
@@ -82,6 +91,16 @@ function apiMatchToMatch(apiMatch: ApiMatch, id: number): Match {
   const team2Info = getTeamInfo(apiMatch.team2)
   const country = getCountryByGround(apiMatch.ground)
 
+  const goals: GoalScorer[] = []
+  for (const g of apiMatch.goals1 ?? []) {
+    if (g.owngoal) continue
+    goals.push({ name: g.name, team: team1Info.name, minute: g.minute, penalty: g.penalty })
+  }
+  for (const g of apiMatch.goals2 ?? []) {
+    if (g.owngoal) continue
+    goals.push({ name: g.name, team: team2Info.name, minute: g.minute, penalty: g.penalty })
+  }
+
   return {
     id,
     phase: mapRound(apiMatch.round, apiMatch.group),
@@ -98,6 +117,7 @@ function apiMatchToMatch(apiMatch: ApiMatch, id: number): Match {
     city: getCityFromGround(apiMatch.ground),
     country,
     status: determineStatus(apiMatch),
+    goals,
   }
 }
 

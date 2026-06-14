@@ -10,6 +10,7 @@ import { UpcomingMatches } from "./dashboard/UpcomingMatches"
 import { WorldCupCountdown } from "./dashboard/WorldCupCountdown"
 import { WinnersBanner } from "./dashboard/WinnersBanner"
 import { TopContenders } from "./dashboard/TopContenders"
+import { TopScorers } from "./dashboard/TopScorers"
 import { CalendarView } from "./calendar/CalendarView"
 import { GroupStandingsView } from "./calendar/GroupStandings"
 import { KnockoutBracket } from "./bracket/KnockoutBracket"
@@ -88,6 +89,7 @@ export function DashboardShell() {
                   <WinnersBanner allMatches={data.allMatches} />
                   <StatsCards allMatches={data.allMatches} />
                   <TopContenders allMatches={data.allMatches} />
+                  <TopScorers allMatches={data.allMatches} />
                   <div className="grid grid-cols-1 xl:grid-cols-[1fr_380px] gap-6 items-start">
                     <UpcomingMatches allMatches={data.allMatches} />
                     <Leaderboard entries={leaderboard} allMatches={data.allMatches} />
