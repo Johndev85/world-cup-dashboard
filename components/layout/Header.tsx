@@ -1,8 +1,7 @@
 "use client"
 
 import { Menu, Sun, Moon } from "lucide-react"
-
-type View = "dashboard" | "calendar" | "standings" | "bracket" | "polla"
+import type { View } from "./Sidebar"
 
 interface HeaderProps {
   activeView: View
@@ -14,6 +13,7 @@ interface HeaderProps {
 const VIEW_TITLES: Record<View, { title: string; sub: string }> = {
   dashboard:  { title: "Resumen General",  sub: "Clasificación y estadísticas de tu polla" },
   polla:      { title: "La Polla",         sub: "Participantes, equipos asignados y premios" },
+  goleadores: { title: "Tabla de Goleadores", sub: "Goleadores del Mundial FIFA 2026" },
   calendar:   { title: "Calendario",       sub: "Todos los partidos del Mundial FIFA 2026" },
   standings:  { title: "Fase de Grupos",   sub: "Tablas de posiciones — 12 grupos" },
   bracket:    { title: "Eliminatorias",    sub: "Cuadro de octavos a la gran final" },

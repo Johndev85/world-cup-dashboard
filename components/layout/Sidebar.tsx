@@ -8,11 +8,12 @@ import {
   Menu,
   X,
   Users,
+  Goal,
 } from "lucide-react"
 import { FifaTrophy } from "@/components/ui/fifa-trophy"
 import { cn } from "@/lib/utils"
 
-type View = "dashboard" | "calendar" | "standings" | "bracket" | "polla"
+export type View = "dashboard" | "polla" | "calendar" | "standings" | "bracket" | "goleadores"
 
 interface SidebarProps {
   activeView: View
@@ -28,6 +29,7 @@ const navItems: {
 }[] = [
   { id: "dashboard", label: "Resumen", icon: LayoutDashboard },
   { id: "polla", label: "Polla", icon: Users },
+  { id: "goleadores", label: "Goleadores", icon: Goal },
   { id: "calendar", label: "Calendario", icon: CalendarDays },
   { id: "standings", label: "Grupos", icon: Table2 },
   { id: "bracket", label: "Eliminatorias", icon: Trophy },

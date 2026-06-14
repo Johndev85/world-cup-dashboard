@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react"
 import { useTheme } from "next-themes"
-import { Sidebar } from "./layout/Sidebar"
+import { Sidebar, type View } from "./layout/Sidebar"
 import { Header } from "./layout/Header"
 import { StatsCards } from "./dashboard/StatsCards"
 import { Leaderboard } from "./dashboard/Leaderboard"
@@ -17,8 +17,6 @@ import { KnockoutBracket } from "./bracket/KnockoutBracket"
 import { PollaView } from "./polla/PollaView"
 import { useWorldCupData } from "@/hooks/useWorldCupData"
 import { computeLeaderboard } from "@/lib/api/leaderboard"
-
-type View = "dashboard" | "calendar" | "standings" | "bracket" | "polla"
 
 export function DashboardShell() {
   const [activeView, setActiveView] = useState<View>("dashboard")
@@ -89,7 +87,6 @@ export function DashboardShell() {
                   <WinnersBanner allMatches={data.allMatches} />
                   <StatsCards allMatches={data.allMatches} />
                   <TopContenders allMatches={data.allMatches} />
-                  <TopScorers allMatches={data.allMatches} />
                   <div className="grid grid-cols-1 xl:grid-cols-[1fr_380px] gap-6 items-start">
                     <UpcomingMatches allMatches={data.allMatches} />
                     <Leaderboard entries={leaderboard} allMatches={data.allMatches} />
@@ -100,6 +97,12 @@ export function DashboardShell() {
               {activeView === "polla" && (
                 <div className="max-w-7xl mx-auto">
                   <PollaView allMatches={data.allMatches} />
+                </div>
+              )}
+
+              {activeView === "goleadores" && (
+                <div className="max-w-3xl mx-auto">
+                  <TopScorers allMatches={data.allMatches} />
                 </div>
               )}
 
