@@ -8,6 +8,7 @@ export interface LeaderboardEntry {
   teams: { name: string; flag: string }[]
   points: number
   prize: number
+  firstPointDate: string
 }
 
 function getMatchPoints(match: Match, teamName: string): number {
@@ -61,10 +62,16 @@ export function computeLeaderboard(allMatches: Match[]): LeaderboardEntry[] {
 
   const entries: LeaderboardEntry[] = participants.map((p) => {
     let points = 0
+    let firstPointDate = ""
 
     for (const match of allMatches) {
-      points += getMatchPoints(match, p.teams[0].name)
-      points += getMatchPoints(match, p.teams[1].name)
+      const pts0 = getMatchPoints(match, p.teams[0].name)
+      const pts1 = getMatchPoints(match, p.teams[1].name)
+      const matchPts = pts0 + pts1
+      if (matchPts > 0 && (!firstPointDate || match.date < firstPointDate)) {
+        firstPointDate = match.date
+      }
+      points += matchPts
     }
 
     let prize = 0
@@ -82,10 +89,11 @@ export function computeLeaderboard(allMatches: Match[]): LeaderboardEntry[] {
       teams: p.teams.map((t) => ({ name: t.name, flag: t.flag })),
       points,
       prize,
+      firstPointDate,
     }
   })
 
-  entries.sort((a, b) => b.points - a.points)
+  entries.sort((a, b) => b.points - a.points || a.firstPointDate.localeCompare(b.firstPointDate))
 
   return entries
 }
