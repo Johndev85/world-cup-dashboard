@@ -98,9 +98,9 @@ export function PollaView({ allMatches }: { allMatches: Match[] }) {
     return [...participants]
       .map((p) => {
         const entry = leaderboard.find((e) => e.id === p.id)
-        return { ...p, points: entry?.points ?? 0 }
+        return { ...p, points: entry?.points ?? 0, firstPointDate: entry?.firstPointDate ?? "" }
       })
-      .sort((a, b) => b.points - a.points)
+      .sort((a, b) => b.points - a.points || a.firstPointDate.localeCompare(b.firstPointDate))
   }, [leaderboard])
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
