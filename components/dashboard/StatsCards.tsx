@@ -2,7 +2,7 @@
 
 import type { Match } from "@/lib/wc2026-data"
 import { participants, PRIZES } from "@/lib/wc2026-data"
-import { Calendar, Users, Swords, Trophy } from "lucide-react"
+import { Calendar, Users, Goal, Trophy } from "lucide-react"
 
 function formatCOPShort(n: number) {
   if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(1)}M`
@@ -12,16 +12,17 @@ function formatCOPShort(n: number) {
 
 export function StatsCards({ allMatches }: { allMatches: Match[] }) {
   const totalMatches = allMatches.length
-  const finishedMatches = allMatches.filter((m) => m.status === "finished").length
+  const finishedMatches = allMatches.filter((m) => m.status === "finished")
+  const totalGoals = finishedMatches.reduce((sum, m) => sum + (m.homeScore ?? 0) + (m.awayScore ?? 0), 0)
   const totalParticipants = participants.length
   const totalPrize = PRIZES.champion + PRIZES.runnerUp
 
   const stats = [
     {
-      label: "Total Partidos",
-      value: totalMatches,
-      sub: "FIFA WC 2026",
-      icon: Swords,
+      label: "Total Goles",
+      value: totalGoals,
+      sub: "en partidos finalizados",
+      icon: Goal,
       color: "text-primary",
       bg: "bg-primary/10",
     },
@@ -35,7 +36,7 @@ export function StatsCards({ allMatches }: { allMatches: Match[] }) {
     },
     {
       label: "Jugados",
-      value: finishedMatches,
+      value: finishedMatches.length,
       sub: `de ${totalMatches} partidos`,
       icon: Calendar,
       color: "text-green-600 dark:text-green-400",
