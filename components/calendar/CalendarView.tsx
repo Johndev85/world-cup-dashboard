@@ -27,7 +27,6 @@ function groupByDate(matches: Match[]) {
 
 export function CalendarView({ allMatches }: { allMatches: Match[] }) {
   const [filter, setFilter] = useState<FilterType>("all")
-  const [collapsedDates, setCollapsedDates] = useState<Set<string>>(new Set())
   const [showFilterMenu, setShowFilterMenu] = useState(false)
 
   const filtered = useMemo(() => {
@@ -39,6 +38,14 @@ export function CalendarView({ allMatches }: { allMatches: Match[] }) {
 
   const byDate = useMemo(() => groupByDate(filtered), [filtered])
   const sortedDates = Array.from(byDate.keys()).sort()
+
+  const [collapsedDates, setCollapsedDates] = useState<Set<string>>(() => {
+    const initial = new Set<string>()
+    for (const [date, matches] of byDate) {
+      if (matches.every((m) => m.status === "finished")) initial.add(date)
+    }
+    return initial
+  })
 
   function toggleDate(date: string) {
     setCollapsedDates((prev) => {
