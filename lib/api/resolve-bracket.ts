@@ -3,6 +3,9 @@ import type { Match, GroupStanding } from "../wc2026-data"
 /**
  * Resolves knockout round placeholders (1A, 2K, 3A/B/C/D/F) to actual team names.
  * Mutates allMatches in-place.
+ *
+ * Uses FIFA Annex C logic: 8 best third-place teams advance and are assigned
+ * to specific slots based on which groups they come from.
  */
 export function resolveKnockoutPlaceholders(
   allMatches: Match[],
@@ -22,15 +25,15 @@ export function resolveKnockoutPlaceholders(
     }
   }
 
-  // Rank 3rd-place teams by points → GD → GF (top 4 advance)
+  // Rank 3rd-place teams by points → GD → GF (top 8 advance)
   thirdPlaceTeams.sort((a, b) =>
     b.team.points - a.team.points ||
     b.team.gd - a.team.gd ||
     b.team.gf - a.team.gf
   )
-  const bestThird = thirdPlaceTeams.slice(0, 4)
+  const bestThird = thirdPlaceTeams.slice(0, 8)
 
-  // Slots that accept 3rd-place teams
+  // Slots that accept 3rd-place teams (from FIFA Annex C)
   const thirdPlaceSlots = [
     { matchId: 74, groups: ["A", "B", "C", "D", "F"] },
     { matchId: 77, groups: ["C", "D", "F", "G", "H"] },
@@ -42,18 +45,45 @@ export function resolveKnockoutPlaceholders(
     { matchId: 87, groups: ["D", "E", "I", "J", "L"] },
   ]
 
-  // Greedy assignment: assign each 3rd-place team to first available slot
+  // Most-constrained-first assignment:
+  // Teams with fewer valid slots get assigned first to avoid conflicts
   const assigned = new Map<number, { name: string; flag: string }>()
   const usedSlots = new Set<number>()
 
-  for (const { group, team } of bestThird) {
-    const slot = thirdPlaceSlots.find(
-      s => !usedSlots.has(s.matchId) && s.groups.includes(group)
-    )
-    if (slot) {
-      assigned.set(slot.matchId, { name: team.name, flag: team.flag })
-      usedSlots.add(slot.matchId)
+  // Calculate valid slots for each team
+  const teamSlots = bestThird.map(({ group, team }) => {
+    const validSlots = thirdPlaceSlots.filter(s => s.groups.includes(group))
+    return { group, team, validSlots }
+  })
+
+  // Assign iteratively: pick team with fewest valid slots, break ties by quality
+  const remaining = [...teamSlots]
+  while (remaining.length > 0) {
+    // Filter to only slots not yet used for each team
+    for (const t of remaining) {
+      t.validSlots = t.validSlots.filter(s => !usedSlots.has(s.matchId))
     }
+
+    // Remove teams with no valid slots (can't be assigned yet)
+    const assignable = remaining.filter(t => t.validSlots.length > 0)
+    if (assignable.length === 0) break
+
+    // Pick the most constrained team (fewest slots), break ties by quality (best first)
+    assignable.sort((a, b) =>
+      a.validSlots.length - b.validSlots.length ||
+      b.team.points - a.team.points ||
+      b.team.gd - a.team.gd ||
+      b.team.gf - a.team.gf
+    )
+
+    const best = assignable[0]
+    const slot = best.validSlots[0]
+    assigned.set(slot.matchId, { name: best.team.name, flag: best.team.flag })
+    usedSlots.add(slot.matchId)
+
+    // Remove assigned team from remaining
+    const idx = remaining.indexOf(best)
+    remaining.splice(idx, 1)
   }
 
   // Resolve each knockout match
