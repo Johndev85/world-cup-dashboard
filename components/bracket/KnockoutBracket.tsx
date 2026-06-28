@@ -105,11 +105,11 @@ export function KnockoutBracket({ allMatches }: { allMatches: Match[] }) {
             "Octavos (1-8)", "Cuartos (1-4)", "Cuartos Finales (1-2)", "Semifinal",
             "FINAL",
             "Semifinal", "Cuartos Finales (3-4)", "Cuartos (5-8)", "Octavos (9-16)"
-          ].map((label) => (
-            <div key={label} className="text-center">
+          ].map((label, i) => (
+            <div key={`${label}-${i}`} className="text-center">
               <span className={cn(
                 "text-[10px] font-bold uppercase tracking-widest",
-                label === "FINAL" ? "text-primary" : "text-muted-foreground"
+                i === 4 ? "text-primary" : "text-muted-foreground"
               )}>
                 {label}
               </span>
