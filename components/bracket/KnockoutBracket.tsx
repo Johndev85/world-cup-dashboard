@@ -15,11 +15,16 @@ interface BracketMatchProps {
   isFinished?: boolean
 }
 
+function isPlaceholder(name: string) {
+  return name.startsWith("W") || name.startsWith("L") || name.startsWith("G") || /^\d[A-L]/.test(name)
+}
+
 function BracketMatch({
   homeTeam, awayTeam, homeFlag, awayFlag,
   homeScore, awayScore, isLive, isFinished
 }: BracketMatchProps) {
-  const isKnown = !homeTeam.startsWith("G") && !homeTeam.startsWith("3") && !homeTeam.startsWith("W") && !homeTeam.startsWith("L") && !/^\d[A-L]/.test(homeTeam)
+  const homeKnown = !isPlaceholder(homeTeam)
+  const awayKnown = !isPlaceholder(awayTeam)
 
   return (
     <div className="relative">
@@ -33,18 +38,18 @@ function BracketMatch({
             ? "bg-primary/10"
             : ""
         )}>
-          <span className="text-xs flex-shrink-0">{isKnown ? homeFlag : "🏳️"}</span>
+          <span className="text-xs flex-shrink-0">{homeKnown ? homeFlag : "🏳️"}</span>
           <span className={cn(
             "text-[11px] font-medium flex-1 sm:hidden",
-            isKnown ? "text-foreground" : "text-muted-foreground"
+            homeKnown ? "text-foreground" : "text-muted-foreground"
           )}>
-            {isKnown ? abbreviateTeamName(homeTeam) : "Por definir"}
+            {homeKnown ? abbreviateTeamName(homeTeam) : "Por definir"}
           </span>
           <span className={cn(
             "text-[11px] font-medium flex-1 hidden sm:inline truncate",
-            isKnown ? "text-foreground" : "text-muted-foreground"
+            homeKnown ? "text-foreground" : "text-muted-foreground"
           )}>
-            {isKnown ? homeTeam : "Por definir"}
+            {homeKnown ? homeTeam : "Por definir"}
           </span>
           {(isLive || isFinished) && (
             <span className={cn(
@@ -61,18 +66,18 @@ function BracketMatch({
             ? "bg-primary/10"
             : ""
         )}>
-          <span className="text-xs flex-shrink-0">{isKnown ? awayFlag : "🏳️"}</span>
+          <span className="text-xs flex-shrink-0">{awayKnown ? awayFlag : "🏳️"}</span>
           <span className={cn(
             "text-[11px] font-medium flex-1 sm:hidden",
-            isKnown ? "text-foreground" : "text-muted-foreground"
+            awayKnown ? "text-foreground" : "text-muted-foreground"
           )}>
-            {isKnown ? abbreviateTeamName(awayTeam) : "Por definir"}
+            {awayKnown ? abbreviateTeamName(awayTeam) : "Por definir"}
           </span>
           <span className={cn(
             "text-[11px] font-medium flex-1 hidden sm:inline truncate",
-            isKnown ? "text-foreground" : "text-muted-foreground"
+            awayKnown ? "text-foreground" : "text-muted-foreground"
           )}>
-            {isKnown ? awayTeam : "Por definir"}
+            {awayKnown ? awayTeam : "Por definir"}
           </span>
           {(isLive || isFinished) && (
             <span className={cn(

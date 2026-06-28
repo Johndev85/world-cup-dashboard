@@ -2,6 +2,7 @@ import type { Match, GroupStanding, Phase, GoalScorer } from "../wc2026-data"
 import { getTeamInfo } from "./team-mappings"
 import { getCountryByGround, getCityFromGround, getVenueFromGround } from "./venue-mappings"
 import { fetchFallbackScores } from "./wc2026-fallback"
+import { resolveKnockoutPlaceholders } from "./resolve-bracket"
 
 const API_URL = "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
 
@@ -200,6 +201,7 @@ async function fetchPrimaryAPI(): Promise<WorldCupData> {
   const data: ApiResponse = await res.json()
   const allMatches = data.matches.map((m, i) => apiMatchToMatch(m, i + 1))
   const groupStandings = computeGroupStandings(allMatches)
+  resolveKnockoutPlaceholders(allMatches, groupStandings)
 
   return { allMatches, groupStandings }
 }
@@ -241,6 +243,7 @@ export async function fetchWorldCupData(): Promise<WorldCupData> {
   })
 
   const groupStandings = computeGroupStandings(mergedMatches)
+  resolveKnockoutPlaceholders(mergedMatches, groupStandings)
 
   cache = { allMatches: mergedMatches, groupStandings }
   lastFetch = now
