@@ -23,6 +23,19 @@ function isMatchLive(matchDate: string): boolean {
   return now >= start && now <= end
 }
 
+function phaseLabel(phase: string): string {
+  if (phase.startsWith("Grupo ")) return phase.replace("Grupo ", "G")
+  const labels: Record<string, string> = {
+    "Octavos de Final": "Octavos",
+    "Cuartos de Final": "Cuartos",
+    "Semifinales": "Semi-Final",
+    "Semifinal": "Semi-Final",
+    "Tercer Lugar": "3er Lugar",
+    "Final": "Final",
+  }
+  return labels[phase] ?? phase
+}
+
 export function UpcomingMatches({ allMatches }: { allMatches: Match[] }) {
   const [now, setNow] = useState(Date.now())
 
@@ -33,13 +46,12 @@ export function UpcomingMatches({ allMatches }: { allMatches: Match[] }) {
 
   const upcoming = allMatches
     .filter((m) => {
-      const isGroup = m.phase.startsWith("Grupo")
       const isPending = m.status === "pending"
       const isLiveNow = isMatchLive(m.date)
-      return isGroup && (isPending || isLiveNow)
+      return isPending || isLiveNow
     })
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-    .slice(0, 8)
+    .slice(0, 10)
 
   return (
     <div className="bg-card border border-border rounded-lg overflow-hidden">
@@ -50,13 +62,13 @@ export function UpcomingMatches({ allMatches }: { allMatches: Match[] }) {
             Próximos Partidos
           </span>
         </div>
-        <span className="text-xs text-muted-foreground">fase de grupos</span>
+        <span className="text-xs text-muted-foreground">todos los partidos</span>
       </div>
 
       {upcoming.length === 0 ? (
         <div className="px-4 py-8 flex flex-col items-center gap-2 text-center">
           <CalendarX className="w-8 h-8 text-muted-foreground/50" />
-          <span className="text-sm text-muted-foreground">No hay próximos partidos de grupos</span>
+          <span className="text-sm text-muted-foreground">No hay próximos partidos</span>
         </div>
       ) : (
         <div className="divide-y divide-border/50">
@@ -76,7 +88,7 @@ export function UpcomingMatches({ allMatches }: { allMatches: Match[] }) {
                 "text-xs px-1.5 py-0.5 rounded font-mono font-semibold flex-shrink-0 hidden sm:inline",
                 PHASE_COLORS[match.phase]
               )}>
-                {match.phase.replace("Grupo ", "G")}
+                {phaseLabel(match.phase)}
               </span>
 
               {/* Match */}

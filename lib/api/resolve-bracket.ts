@@ -50,25 +50,20 @@ export function resolveKnockoutPlaceholders(
   const assigned = new Map<number, { name: string; flag: string }>()
   const usedSlots = new Set<number>()
 
-  // Calculate valid slots for each team
   const teamSlots = bestThird.map(({ group, team }) => {
     const validSlots = thirdPlaceSlots.filter(s => s.groups.includes(group))
     return { group, team, validSlots }
   })
 
-  // Assign iteratively: pick team with fewest valid slots, break ties by quality
   const remaining = [...teamSlots]
   while (remaining.length > 0) {
-    // Filter to only slots not yet used for each team
     for (const t of remaining) {
       t.validSlots = t.validSlots.filter(s => !usedSlots.has(s.matchId))
     }
 
-    // Remove teams with no valid slots (can't be assigned yet)
     const assignable = remaining.filter(t => t.validSlots.length > 0)
     if (assignable.length === 0) break
 
-    // Pick the most constrained team (fewest slots), break ties by quality (best first)
     assignable.sort((a, b) =>
       a.validSlots.length - b.validSlots.length ||
       b.team.points - a.team.points ||
@@ -81,7 +76,6 @@ export function resolveKnockoutPlaceholders(
     assigned.set(slot.matchId, { name: best.team.name, flag: best.team.flag })
     usedSlots.add(slot.matchId)
 
-    // Remove assigned team from remaining
     const idx = remaining.indexOf(best)
     remaining.splice(idx, 1)
   }
@@ -91,7 +85,6 @@ export function resolveKnockoutPlaceholders(
     if (match.phase !== "Octavos de Final") continue
 
     const resolve = (teamName: string): { name: string; flag: string } | null => {
-      // Simple 1X or 2X pattern
       const simpleMatch = teamName.match(/^([12])([A-L])$/)
       if (simpleMatch) {
         const [, pos, groupLetter] = simpleMatch
@@ -103,11 +96,8 @@ export function resolveKnockoutPlaceholders(
         return null
       }
 
-      // 3rd-place pool pattern: 3X/Y/Z/...
       if (teamName.startsWith("3") && teamName.includes("/")) {
-        const assignedTeam = assigned.get(match.id)
-        if (assignedTeam) return assignedTeam
-        return null
+        return assigned.get(match.id) ?? null
       }
 
       return null

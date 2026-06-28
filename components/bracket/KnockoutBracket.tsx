@@ -16,7 +16,7 @@ interface BracketMatchProps {
 }
 
 function isPlaceholder(name: string) {
-  return name.startsWith("W") || name.startsWith("L") || name.startsWith("G") || /^\d[A-L]/.test(name)
+  return /^W\d/.test(name) || /^L\d/.test(name) || /^G\d/.test(name) || /^\d[A-L]/.test(name)
 }
 
 function BracketMatch({
