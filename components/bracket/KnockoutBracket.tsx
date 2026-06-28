@@ -19,7 +19,7 @@ function BracketMatch({
   homeTeam, awayTeam, homeFlag, awayFlag,
   homeScore, awayScore, isLive, isFinished
 }: BracketMatchProps) {
-  const isKnown = !homeTeam.startsWith("G") && !homeTeam.startsWith("3") && !homeTeam.startsWith("W") && !homeTeam.startsWith("L")
+  const isKnown = !homeTeam.startsWith("G") && !homeTeam.startsWith("3") && !homeTeam.startsWith("W") && !homeTeam.startsWith("L") && !/^\d[A-L]/.test(homeTeam)
 
   return (
     <div className="relative">
@@ -89,19 +89,23 @@ function BracketMatch({
 }
 
 export function KnockoutBracket({ allMatches }: { allMatches: Match[] }) {
-  const octavos = allMatches.filter((m) => m.phase === "Octavos de Final")
-  const cuartos = allMatches.filter((m) => m.phase === "Cuartos de Final")
-  const semis   = allMatches.filter((m) => m.phase === "Semifinal")
-  const sf      = allMatches.filter((m) => m.phase === "Semifinales")
-  const tp      = allMatches.filter((m) => m.phase === "Tercer Lugar")
-  const fin     = allMatches.filter((m) => m.phase === "Final")
+  const octavos   = allMatches.filter((m) => m.phase === "Octavos de Final")
+  const cuartos   = allMatches.filter((m) => m.phase === "Cuartos de Final")
+  const sf        = allMatches.filter((m) => m.phase === "Semifinales")
+  const semis     = allMatches.filter((m) => m.phase === "Semifinal")
+  const tp        = allMatches.filter((m) => m.phase === "Tercer Lugar")
+  const fin       = allMatches.filter((m) => m.phase === "Final")
 
   return (
     <div className="w-full overflow-x-auto pb-4">
-      <div className="min-w-[1100px]">
+      <div className="min-w-[1300px]">
         {/* Column labels */}
-        <div className="grid grid-cols-[1fr_1fr_1fr_auto_1fr_1fr] gap-3 mb-3">
-          {["Octavos (1-8)", "Cuartos (1-4)", "Semifinales (1-2)", "FINAL", "Semifinales (3-4)", "Cuartos (5-8)"].map((label) => (
+        <div className="grid grid-cols-[1fr_1fr_1fr_1fr_auto_1fr_1fr_1fr_1fr] gap-3 mb-3">
+          {[
+            "Octavos (1-8)", "Cuartos (1-4)", "Cuartos Finales (1-2)", "Semifinal",
+            "FINAL",
+            "Semifinal", "Cuartos Finales (3-4)", "Cuartos (5-8)", "Octavos (9-16)"
+          ].map((label) => (
             <div key={label} className="text-center">
               <span className={cn(
                 "text-[10px] font-bold uppercase tracking-widest",
@@ -114,7 +118,7 @@ export function KnockoutBracket({ allMatches }: { allMatches: Match[] }) {
         </div>
 
         {/* Bracket body */}
-        <div className="grid grid-cols-[1fr_1fr_1fr_auto_1fr_1fr] gap-3 items-center">
+        <div className="grid grid-cols-[1fr_1fr_1fr_1fr_auto_1fr_1fr_1fr_1fr] gap-3 items-center">
           {/* Octavos left (1-8) */}
           <div className="flex flex-col gap-2">
             {octavos.slice(0, 8).map((m) => (
@@ -141,9 +145,22 @@ export function KnockoutBracket({ allMatches }: { allMatches: Match[] }) {
             ))}
           </div>
 
-          {/* Semifinales left (1-2) */}
-          <div className="flex flex-col gap-20 py-12">
+          {/* Cuartos Finales left (1-2) = Quarter-finals */}
+          <div className="flex flex-col gap-20 py-8">
             {sf.slice(0, 2).map((m) => (
+              <BracketMatch
+                key={m.id}
+                homeTeam={m.homeTeam} awayTeam={m.awayTeam}
+                homeFlag={m.homeFlag} awayFlag={m.awayFlag}
+                homeScore={m.homeScore} awayScore={m.awayScore}
+                isLive={m.status === "live"} isFinished={m.status === "finished"}
+              />
+            ))}
+          </div>
+
+          {/* Semifinal left */}
+          <div className="flex flex-col gap-28 py-14">
+            {semis.slice(0, 1).map((m) => (
               <BracketMatch
                 key={m.id}
                 homeTeam={m.homeTeam} awayTeam={m.awayTeam}
@@ -185,8 +202,21 @@ export function KnockoutBracket({ allMatches }: { allMatches: Match[] }) {
             </div>
           </div>
 
-          {/* Semifinales right (3-4) */}
-          <div className="flex flex-col gap-20 py-12">
+          {/* Semifinal right */}
+          <div className="flex flex-col gap-28 py-14">
+            {semis.slice(1, 2).map((m) => (
+              <BracketMatch
+                key={m.id}
+                homeTeam={m.homeTeam} awayTeam={m.awayTeam}
+                homeFlag={m.homeFlag} awayFlag={m.awayFlag}
+                homeScore={m.homeScore} awayScore={m.awayScore}
+                isLive={m.status === "live"} isFinished={m.status === "finished"}
+              />
+            ))}
+          </div>
+
+          {/* Cuartos Finales right (3-4) = Quarter-finals */}
+          <div className="flex flex-col gap-20 py-8">
             {sf.slice(2, 4).map((m) => (
               <BracketMatch
                 key={m.id}

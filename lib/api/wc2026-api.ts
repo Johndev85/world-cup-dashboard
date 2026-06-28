@@ -39,8 +39,8 @@ interface ApiResponse {
 const ROUND_TO_PHASE: Record<string, Phase> = {
   "Round of 32":            "Octavos de Final",
   "Round of 16":            "Cuartos de Final",
-  "Quarter-final":          "Semifinal",
-  "Semi-final":             "Semifinales",
+  "Quarter-final":          "Semifinales",
+  "Semi-final":             "Semifinal",
   "Match for third place":  "Tercer Lugar",
   "Final":                  "Final",
 }
