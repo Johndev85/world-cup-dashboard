@@ -77,22 +77,29 @@ export function MatchCard({ match, compact = false }: MatchCardProps) {
         </div>
 
         {/* Score / vs */}
-        <div className="flex items-center gap-1.5 flex-shrink-0">
+        <div className="flex flex-col items-center gap-0.5 flex-shrink-0">
           {isFinished || isLive ? (
             <>
-              <span className={cn(
-                "w-8 h-8 flex items-center justify-center rounded text-sm font-bold font-mono",
-                isLive ? "bg-accent/20 text-accent" : "bg-secondary text-foreground"
-              )}>
-                {match.homeScore ?? "-"}
-              </span>
-              <span className="text-muted-foreground text-xs">:</span>
-              <span className={cn(
-                "w-8 h-8 flex items-center justify-center rounded text-sm font-bold font-mono",
-                isLive ? "bg-accent/20 text-accent" : "bg-secondary text-foreground"
-              )}>
-                {match.awayScore ?? "-"}
-              </span>
+              <div className="flex items-center gap-1.5">
+                <span className={cn(
+                  "w-8 h-8 flex items-center justify-center rounded text-sm font-bold font-mono",
+                  isLive ? "bg-accent/20 text-accent" : "bg-secondary text-foreground"
+                )}>
+                  {match.homeScore ?? "-"}
+                </span>
+                <span className="text-muted-foreground text-xs">:</span>
+                <span className={cn(
+                  "w-8 h-8 flex items-center justify-center rounded text-sm font-bold font-mono",
+                  isLive ? "bg-accent/20 text-accent" : "bg-secondary text-foreground"
+                )}>
+                  {match.awayScore ?? "-"}
+                </span>
+              </div>
+              {isFinished && match.homePenalties != null && match.awayPenalties != null && (
+                <span className="text-[10px] text-muted-foreground font-mono">
+                  ({match.homePenalties}-{match.awayPenalties} pen)
+                </span>
+              )}
             </>
           ) : (
             <span className="text-muted-foreground text-xs font-mono px-2">vs</span>
