@@ -1,11 +1,14 @@
 import type { Match, GroupStanding } from "../wc2026-data"
 
 /**
- * Resolves knockout round placeholders (1A, 2K, 3A/B/C/D/F) to actual team names.
+ * Resolves knockout round placeholders to actual team names.
  * Mutates allMatches in-place.
  *
- * Uses FIFA Annex C logic: 8 best third-place teams advance and are assigned
- * to specific slots based on which groups they come from.
+ * Handles:
+ * - R32 (Octavos): 1A, 2K, 3A/B/C/D/F → group standings lookup
+ * - R16 (Cuartos) onwards: W74, W89, L101 → winner/loser of referenced match
+ *
+ * Uses multi-pass loop to cascade: R32 → R16 → QF → SF → Final
  */
 export function resolveKnockoutPlaceholders(
   allMatches: Match[],
@@ -45,8 +48,7 @@ export function resolveKnockoutPlaceholders(
     { matchId: 87, groups: ["D", "E", "I", "J", "L"] },
   ]
 
-  // Most-constrained-first assignment:
-  // Teams with fewer valid slots get assigned first to avoid conflicts
+  // Most-constrained-first assignment
   const assigned = new Map<number, { name: string; flag: string }>()
   const usedSlots = new Set<number>()
 
@@ -80,39 +82,99 @@ export function resolveKnockoutPlaceholders(
     remaining.splice(idx, 1)
   }
 
-  // Resolve each knockout match
-  for (const match of allMatches) {
-    if (match.phase !== "Octavos de Final") continue
+  // Build match lookup by ID
+  const matchById = new Map<number, Match>()
+  for (const m of allMatches) {
+    matchById.set(m.id, m)
+  }
 
-    const resolve = (teamName: string): { name: string; flag: string } | null => {
-      const simpleMatch = teamName.match(/^([12])([A-L])$/)
-      if (simpleMatch) {
-        const [, pos, groupLetter] = simpleMatch
-        const group = groupMap.get(groupLetter)
-        if (group && group.length >= 2) {
-          const idx = pos === "1" ? 0 : 1
-          return { name: group[idx].name, flag: group[idx].flag }
+  // Helper: determine winner/loser of a finished match
+  function getMatchResult(match: Match): { winner: { name: string; flag: string } | null; loser: { name: string; flag: string } | null } {
+    if (match.status !== "finished" || match.homeScore === null || match.awayScore === null) {
+      return { winner: null, loser: null }
+    }
+
+    let homeWon: boolean
+    if (match.homeScore !== match.awayScore) {
+      homeWon = (match.homeScore ?? 0) > (match.awayScore ?? 0)
+    } else if (match.homePenalties != null && match.awayPenalties != null) {
+      homeWon = match.homePenalties > match.awayPenalties
+    } else {
+      return { winner: null, loser: null }
+    }
+
+    const winner = { name: homeWon ? match.homeTeam : match.awayTeam, flag: homeWon ? match.homeFlag : match.awayFlag }
+    const loser = { name: homeWon ? match.awayTeam : match.homeTeam, flag: homeWon ? match.awayFlag : match.homeFlag }
+    return { winner, loser }
+  }
+
+  // Multi-pass resolution: keep resolving until no changes
+  let changed = true
+  while (changed) {
+    changed = false
+
+    for (const match of allMatches) {
+      const resolveTeam = (teamName: string): { name: string; flag: string } | null => {
+        // Pattern: 1X, 2X (group position)
+        const simpleMatch = teamName.match(/^([12])([A-L])$/)
+        if (simpleMatch) {
+          const [, pos, groupLetter] = simpleMatch
+          const group = groupMap.get(groupLetter)
+          if (group && group.length >= 2) {
+            const idx = pos === "1" ? 0 : 1
+            return { name: group[idx].name, flag: group[idx].flag }
+          }
+          return null
         }
+
+        // Pattern: 3X/Y/Z/... (3rd-place pool)
+        if (teamName.startsWith("3") && teamName.includes("/")) {
+          if (match.phase === "Octavos de Final") {
+            return assigned.get(match.id) ?? null
+          }
+          return null
+        }
+
+        // Pattern: W## (winner of match)
+        const winnerMatch = teamName.match(/^W(\d+)$/)
+        if (winnerMatch) {
+          const refId = parseInt(winnerMatch[1])
+          const refMatch = matchById.get(refId)
+          if (refMatch) {
+            const { winner } = getMatchResult(refMatch)
+            return winner
+          }
+          return null
+        }
+
+        // Pattern: L## (loser of match)
+        const loserMatch = teamName.match(/^L(\d+)$/)
+        if (loserMatch) {
+          const refId = parseInt(loserMatch[1])
+          const refMatch = matchById.get(refId)
+          if (refMatch) {
+            const { loser } = getMatchResult(refMatch)
+            return loser
+          }
+          return null
+        }
+
         return null
       }
 
-      if (teamName.startsWith("3") && teamName.includes("/")) {
-        return assigned.get(match.id) ?? null
+      const homeResolved = resolveTeam(match.homeTeam)
+      if (homeResolved && homeResolved.name !== match.homeTeam) {
+        match.homeTeam = homeResolved.name
+        match.homeFlag = homeResolved.flag
+        changed = true
       }
 
-      return null
-    }
-
-    const homeResolved = resolve(match.homeTeam)
-    if (homeResolved) {
-      match.homeTeam = homeResolved.name
-      match.homeFlag = homeResolved.flag
-    }
-
-    const awayResolved = resolve(match.awayTeam)
-    if (awayResolved) {
-      match.awayTeam = awayResolved.name
-      match.awayFlag = awayResolved.flag
+      const awayResolved = resolveTeam(match.awayTeam)
+      if (awayResolved && awayResolved.name !== match.awayTeam) {
+        match.awayTeam = awayResolved.name
+        match.awayFlag = awayResolved.flag
+        changed = true
+      }
     }
   }
 }

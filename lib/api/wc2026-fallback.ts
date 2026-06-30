@@ -6,6 +6,8 @@ interface FallbackGame {
   id: string
   home_score: string
   away_score: string
+  home_penalty_score: string
+  away_penalty_score: string
   finished: string
   home_team_name_en: string
   away_team_name_en: string
@@ -19,6 +21,8 @@ export interface MatchScoreUpdate {
   id: number
   homeScore: number
   awayScore: number
+  homePenalties: number | null
+  awayPenalties: number | null
   homeTeam: string
   awayTeam: string
 }
@@ -43,6 +47,8 @@ export async function fetchFallbackScores(): Promise<MatchScoreUpdate[]> {
         id: parseInt(g.id),
         homeScore: parseInt(g.home_score) || 0,
         awayScore: parseInt(g.away_score) || 0,
+        homePenalties: g.home_penalty_score ? parseInt(g.home_penalty_score) : null,
+        awayPenalties: g.away_penalty_score ? parseInt(g.away_penalty_score) : null,
         homeTeam: resolveFallbackName(g.home_team_name_en),
         awayTeam: resolveFallbackName(g.away_team_name_en),
       }))
