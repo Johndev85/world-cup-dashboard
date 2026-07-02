@@ -9,6 +9,13 @@ interface ScorerEntry {
   name: string
   team: string
   goals: number
+  lastGoalMinute: number
+}
+
+function parseMinute(minute: string): number {
+  const match = minute.match(/^(\d+)(?:\+(\d+))?/)
+  if (!match) return 0
+  return parseInt(match[1]) + (match[2] ? parseInt(match[2]) : 0)
 }
 
 export function TopScorers({ allMatches }: { allMatches: Match[] }) {
@@ -18,17 +25,19 @@ export function TopScorers({ allMatches }: { allMatches: Match[] }) {
     for (const match of allMatches) {
       for (const g of match.goals ?? []) {
         const key = `${g.name}|${g.team}`
+        const minute = parseMinute(g.minute)
         const existing = map.get(key)
         if (existing) {
           existing.goals++
+          existing.lastGoalMinute = minute
         } else {
-          map.set(key, { name: g.name, team: g.team, goals: 1 })
+          map.set(key, { name: g.name, team: g.team, goals: 1, lastGoalMinute: minute })
         }
       }
     }
 
     return Array.from(map.values())
-      .sort((a, b) => b.goals - a.goals || a.name.localeCompare(b.name))
+      .sort((a, b) => b.goals - a.goals || a.lastGoalMinute - b.lastGoalMinute)
       .slice(0, 15)
   }, [allMatches])
 
