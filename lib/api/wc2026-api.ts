@@ -102,6 +102,9 @@ function apiMatchToMatch(apiMatch: ApiMatch, id: number): Match {
     goals.push({ name: g.name, team: team2Info.name, minute: g.minute, penalty: g.penalty })
   }
 
+  // Use ET score if available (match went to extra time), otherwise FT
+  const finalScore = apiMatch.score?.et ?? apiMatch.score?.ft
+
   return {
     id,
     phase: mapRound(apiMatch.round, apiMatch.group),
@@ -110,8 +113,8 @@ function apiMatchToMatch(apiMatch: ApiMatch, id: number): Match {
     awayTeam: team2Info.name,
     homeFlag: team1Info.flag,
     awayFlag: team2Info.flag,
-    homeScore: apiMatch.score?.ft?.[0] ?? null,
-    awayScore: apiMatch.score?.ft?.[1] ?? null,
+    homeScore: finalScore?.[0] ?? null,
+    awayScore: finalScore?.[1] ?? null,
     homePenalties: apiMatch.score?.p?.[0] ?? null,
     awayPenalties: apiMatch.score?.p?.[1] ?? null,
     venue: getVenueFromGround(apiMatch.ground),
