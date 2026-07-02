@@ -9,35 +9,30 @@ interface ScorerEntry {
   name: string
   team: string
   goals: number
-  lastGoalMinute: number
-}
-
-function parseMinute(minute: string): number {
-  const match = minute.match(/^(\d+)(?:\+(\d+))?/)
-  if (!match) return 0
-  return parseInt(match[1]) + (match[2] ? parseInt(match[2]) : 0)
+  reachedAt: number
 }
 
 export function TopScorers({ allMatches }: { allMatches: Match[] }) {
   const scorers = useMemo(() => {
     const map = new Map<string, ScorerEntry>()
+    let goalOrder = 0
 
     for (const match of allMatches) {
       for (const g of match.goals ?? []) {
         const key = `${g.name}|${g.team}`
-        const minute = parseMinute(g.minute)
+        goalOrder++
         const existing = map.get(key)
         if (existing) {
           existing.goals++
-          existing.lastGoalMinute = minute
+          existing.reachedAt = goalOrder
         } else {
-          map.set(key, { name: g.name, team: g.team, goals: 1, lastGoalMinute: minute })
+          map.set(key, { name: g.name, team: g.team, goals: 1, reachedAt: goalOrder })
         }
       }
     }
 
     return Array.from(map.values())
-      .sort((a, b) => b.goals - a.goals || a.lastGoalMinute - b.lastGoalMinute)
+      .sort((a, b) => b.goals - a.goals || a.reachedAt - b.reachedAt)
       .slice(0, 15)
   }, [allMatches])
 
